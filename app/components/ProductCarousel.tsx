@@ -15,13 +15,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
-
-interface CategoryItem {
-  id: string;
-  icon: string;
-  name: string;
-  href: string;
-}
+import { CategoryItem } from "@/types/types";
 
 interface CardCarouselProps {
   items: CategoryItem[];

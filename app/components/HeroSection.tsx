@@ -19,18 +19,7 @@ import earphoneandspeakerLight from "@/public/menu-icons/Earphones and Speaker1.
 import carphoneholderLight from "@/public/menu-icons/car phone holder 1.png";
 import auxcableLight from "@/public/menu-icons/AUX Cable1.png";
 import darkitem from "@/public/heroimages/dark-item.png";
-
-interface ImageData {
-  src: string;
-}
-
-// Define types for our category items
-interface CategoryItem {
-  id: string;
-  icon: ImageData;
-  name: string;
-  href: string;
-}
+import { CategoryItem } from "@/types/types";
 
 // Sample categories based on the image
 const categories: CategoryItem[] = [
