@@ -43,7 +43,7 @@ export default function ProductCarousel({
                   <div className="flex flex-col items-center space-y-4">
                     <CardDescription className="text-center ">
                       <Image
-                        src={item.icon}
+                        src={item.icon.src}
                         alt={item.name}
                         width={48}
                         height={48}

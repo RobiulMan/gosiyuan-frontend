@@ -11,7 +11,6 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import ThemeToggleBtn from "./ThemeToggleBtn";
-import AnimationButton from "./AnimationButton";
 
 const categoiresMenu = [
   {
