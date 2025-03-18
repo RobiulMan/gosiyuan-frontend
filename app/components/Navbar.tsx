@@ -33,10 +33,13 @@ const categoiresMenu = [
     name: " Data Cable",
     href: "/data-cable",
   },
-
   {
     name: " Earphones & Speaker",
     href: "/earphones-speaker",
+  },
+  {
+    name: " Multi Funcaitonal",
+    href: "/multi-functional",
   },
 
   {

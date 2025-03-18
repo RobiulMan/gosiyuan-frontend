@@ -38,7 +38,7 @@ export default function ProductCarousel({
         {items.map((item, index) => (
           <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/5">
             <Link href={item.href || "/"} className="block h-full ">
-              <Card className="dark:bg-gray-700 hover:dark:bg-green-200 hover:bg-green-200 hover:dark:text-gray-800  w-full h-full  ">
+              <Card className="transition-colors duration-300  dark:bg-gray-700 hover:dark:bg-green-200 hover:bg-green-200 hover:dark:text-gray-800  w-full h-full  ">
                 <CardContent className="flex aspect-square  items-center justify-center p-6 h-full">
                   <div className="flex flex-col items-center space-y-4">
                     <CardDescription className="text-center ">
@@ -47,7 +47,7 @@ export default function ProductCarousel({
                         alt={item.name}
                         width={48}
                         height={48}
-                        className="dark:filter "
+                        className="dark:filter dark:invert "
                         draggable="false"
                       />
                     </CardDescription>
