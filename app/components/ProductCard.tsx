@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart } from "lucide-react";
 
-import carphoneholderLight from "@/public/menu-icons/car phone holder 1.png";
-
-import carchargerDark from "@/public/menu-icons/car phone charger2.png";
+import darkitem from "@/public/heroimages/dark-item.png";
 
 const ProductCard = () => {
   return (
@@ -17,7 +15,7 @@ const ProductCard = () => {
       <div className="p-4">
         <Badge
           variant="outline"
-          className=" text-white-700  border-gray-600 font-bold  rounded-full px-4 py-2 mb-4"
+          className=" dark:text-white text-gray-900 border-1 border-gray-500   dark:border-gray-300 font-bold  rounded-full px-4 py-2 mb-4"
         >
           Pack Size: 12
         </Badge>
@@ -27,11 +25,10 @@ const ProductCard = () => {
             {/* Main product image */}
             <div className="relative  h-32 mx-auto" style={{ width: "120px" }}>
               <Image
-                src={carchargerDark}
+                src={darkitem}
                 alt="A & E Dinosaur & Pirate Plasters Box"
-                fill
                 style={{ objectFit: "contain" }}
-                className="dark:filter dark:invert"
+                className=" dark:filter  "
               />
             </div>
           </div>

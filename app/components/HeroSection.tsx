@@ -1,12 +1,7 @@
 "use client";
-// HeroSection.tsx
-import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { PlugZap } from "lucide-react";
-import coverimage from "@/public/cover.png";
 import ProductCarousel from "@/app/components/ProductCarousel";
 import homechargerLight from "@/public/menu-icons/Home phone charger 1.png";
 import carchargerLight from "@/public/menu-icons/car phone charger1.png";
