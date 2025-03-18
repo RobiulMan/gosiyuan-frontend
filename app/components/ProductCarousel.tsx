@@ -47,7 +47,7 @@ export default function ProductCarousel({
                         alt={item.name}
                         width={48}
                         height={48}
-                        className="dark:filter dark:invert "
+                        className="dark:filter "
                         draggable="false"
                       />
                     </CardDescription>
