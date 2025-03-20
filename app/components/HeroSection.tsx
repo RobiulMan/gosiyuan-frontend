@@ -68,7 +68,7 @@ const categories: CategoryItem[] = [
 
 export default function HeroSection() {
   return (
-    <section className="w-full bg-slate-50 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">
+    <section className="w-full bg-slate-100 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left column - Text content */}
@@ -94,12 +94,10 @@ export default function HeroSection() {
 
           {/* Right column - Image */}
           <div className="relative">
-            <div className="bg-green-200  rounded-full h-[400px] w-[400px] ml-auto relative">
+            <div className="bg-green-200  rounded-full h-[500px] w-[500px] ml-auto relative">
               <Image
                 src={darkitem}
                 alt="Featured brand products"
-                width={400}
-                height={400}
                 className="absolute top-0 right-0"
               />
             </div>

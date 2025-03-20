@@ -1,14 +1,32 @@
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
-import HeroSection from "./components/HeroSection";
 import Link from "next/link";
-import ProductCard from "./components/ProductCard";
 import fetchDataFromStrapi from "@/lib/api";
 import { Product } from "@/types/typeProduct";
-import AboutSection from "./components/About";
 
-export default async function Home() {
-  const data = await fetchDataFromStrapi("/api/products?populate=*");
+// export default async function SingleProductPage({ params }: { params: { id: string } }) {
+//   const data = await fetchDataFromStrapi(`/api/products/${id}?populate=*`);
+//   const product = data?.data;
+
+function notFound() {
+  return {
+    notFound: true,
+  };
+}
+export default async function SingleProductPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+
+  // Query the API with a filter on the slug field
+  const products = await fetchDataFromStrapi("", slug, true);
+  if (!products || products.length === 0) {
+    notFound();
+  }
+
+  const product = products[0];
   return (
     <>
       <div className="w-full dark:bg-emerald-900  font-bold text-center p-2 ">
@@ -20,17 +38,13 @@ export default async function Home() {
         </p>
       </div>
       <Navbar />
-      <HeroSection />
-      <AboutSection />
       <div className="w-full bg-slate-50 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">
         <h2 className=" mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
           Our Products
         </h2>
-        <div className="container   flex justify-center space-x-5 mx-auto px-4">
+        <div className="container  flex justify-center space-x-5 mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center ">
-            {data?.map((product) => (
-              <ProductCard product={product} key={product.id} />
-            ))}
+            {/* data has to be rendred */}
           </div>
         </div>
       </div>

@@ -53,14 +53,16 @@ const NavBar = () => {
     <nav className="w-full  bg-green-200 dark:bg-gray-800 sticky py-6  px-4 z-50">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between ">
         {/* Logo and Brand */}
-        <div className="flex items-center space-x-2">
-          <div className=" rounded-md p-1">
-            <Store />
+        <Link href="/">
+          <div className="flex items-center space-x-2">
+            <div className=" rounded-md p-1">
+              <Store />
+            </div>
+            <span className="text-xl font-bold text-foreground">
+              EXCELLUSENSE LLC
+            </span>
           </div>
-          <span className="text-xl font-bold text-foreground">
-            EXCELLUSENSE LLC
-          </span>
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
 
