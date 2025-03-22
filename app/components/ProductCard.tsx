@@ -10,7 +10,8 @@ import { Heart } from "lucide-react";
 import darkitem from "@/public/heroimages/dark-item.png";
 import { Product } from "@/types/typeProduct";
 import Link from "next/link";
-const ProductCard = ({ product }) => {
+
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className="group w-64 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
       <Link href={`/product/${product?.slug}`}>
@@ -32,7 +33,8 @@ const ProductCard = ({ product }) => {
                 <Image
                   src={
                     product?.product_card_image?.formats?.medium?.url ||
-                    product?.image[0]?.formate.medium.url
+                    product?.image[0]?.formats?.medium?.url ||
+                    "/fallback-image.png"
                   }
                   alt={product?.name}
                   style={{ objectFit: "cover" }}

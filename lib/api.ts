@@ -46,7 +46,7 @@ const fetchDataFromStrapi = async (
     // Parse and return the array of products
     const products = Array.isArray(data.data) ? data.data : [data.data];
 
-    return products.map((product) => {
+    return products.map((product: Product) => {
       try {
         // Attempt to validate each product
         return ProductSchema.parse(product);

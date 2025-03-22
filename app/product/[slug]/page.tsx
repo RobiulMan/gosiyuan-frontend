@@ -1,50 +1,67 @@
-import FooterSection from "@/app/components/FooterSection";
-import Navbar from "@/app/components/Navbar";
-import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import fetchDataFromStrapi from "@/lib/api";
-import { Product } from "@/types/typeProduct";
+import Navbar from "@/app/components/Navbar";
+import FooterSection from "@/app/components/FooterSection";
+import HeadLabel from "@/app/components/HeadLebel";
+import Image from "next/image";
+import ProductImageGallery from "@/app/components/ProductImageGallery";
 
-// export default async function SingleProductPage({ params }: { params: { id: string } }) {
-//   const data = await fetchDataFromStrapi(`/api/products/${id}?populate=*`);
-//   const product = data?.data;
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const products = await fetchDataFromStrapi("", params.slug, true);
+  const product = products[0];
 
-function notFound() {
-  return {
-    notFound: true,
-  };
+  return product
+    ? { title: product.name, description: product.subtitle }
+    : { title: "Product Not Found" };
 }
-export default async function SingleProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
 
-  // Query the API with a filter on the slug field
-  const products = await fetchDataFromStrapi("", slug, true);
+export async function generateStaticParams() {
+  const products = await fetchDataFromStrapi("/api/products?fields[0]=slug");
+  return products.map((product) => ({ slug: product.slug }));
+}
+
+export default async function SingleProductPage({ params }: any) {
+  const products = await fetchDataFromStrapi("", params.slug, true);
+
   if (!products || products.length === 0) {
     notFound();
   }
 
   const product = products[0];
+  if (!product) {
+    notFound();
+  }
   return (
     <>
-      <div className="w-full dark:bg-emerald-900  font-bold text-center p-2 ">
-        <p>
-          Call for our wholesale price list{" "}
-          <Link href="tel:+0111111111111" className="text-blue-300">
-            +0111111111111
-          </Link>
-        </p>
-      </div>
+      <HeadLabel />
       <Navbar />
       <div className="w-full bg-slate-50 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">
-        <h2 className=" mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
-          Our Products
-        </h2>
-        <div className="container  flex justify-center space-x-5 mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center ">
-            {/* data has to be rendred */}
+        <div className="container flex justify-center mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full max-w-7xl">
+            {/* Product image */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              {/* You'll need to render description based on its actual structure */}
+              <div>
+                <ProductImageGallery
+                  images={product.image}
+                  productName={product.name}
+                />
+              </div>
+            </div>
+
+            {/* Product details */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                {product.name}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                {product.subtitle}
+              </p>
+              <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-4">
+                ${product.price} USD
+              </p>
+            </div>
           </div>
         </div>
       </div>

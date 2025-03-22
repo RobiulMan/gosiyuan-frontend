@@ -6,19 +6,14 @@ import ProductCard from "./components/ProductCard";
 import fetchDataFromStrapi from "@/lib/api";
 import { Product } from "@/types/typeProduct";
 import AboutSection from "./components/About";
+import HeadLabel from "./components/HeadLebel";
 
 export default async function Home() {
   const data = await fetchDataFromStrapi("/api/products?populate=*");
   return (
     <>
-      <div className="w-full dark:bg-emerald-900  font-bold text-center p-2 ">
-        <p>
-          Call for our wholesale price list{" "}
-          <Link href="tel:+0111111111111" className="text-blue-300">
-            +0111111111111
-          </Link>
-        </p>
-      </div>
+       <HeadLabel />
+       
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -29,7 +24,7 @@ export default async function Home() {
         <div className="container   flex justify-center space-x-5 mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center ">
             {data?.map((product) => (
-              <ProductCard product={product} key={product.id} />
+              <ProductCard product={product as Product} key={product.id} />
             ))}
           </div>
         </div>
