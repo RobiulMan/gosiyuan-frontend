@@ -9,11 +9,16 @@ import AboutSection from "./components/About";
 import HeadLabel from "./components/HeadLebel";
 
 export default async function Home() {
-  const data = await fetchDataFromStrapi("/api/products?populate=*");
+  const data = await fetchDataFromStrapi(
+    "/api/products?populate=*",
+    undefined,
+    false,
+    { next: { tags: ["products"] } },
+  );
   return (
     <>
-       <HeadLabel />
-       
+      <HeadLabel />
+
       <Navbar />
       <HeroSection />
       <AboutSection />

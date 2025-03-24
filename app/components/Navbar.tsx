@@ -79,13 +79,16 @@ const NavBar = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
+                className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
               >
                 <span>Categories</span>
                 <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent
+              className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl
+"
+            >
               {categoiresMenu.map((category, index) => (
                 <Link href={category.href} key={index}>
                   <DropdownMenuItem className="cursor-pointer">

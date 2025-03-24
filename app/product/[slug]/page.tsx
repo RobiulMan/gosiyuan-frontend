@@ -8,7 +8,10 @@ import Image from "next/image";
 import ProductImageGallery from "@/app/components/ProductImageGallery";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const products = await fetchDataFromStrapi("", params.slug, true);
+  const products = await fetchDataFromStrapi("", params.slug, true, {
+    next: { tags: ["products"] },
+  });
+
   const product = products[0];
 
   return product
@@ -17,12 +20,19 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const products = await fetchDataFromStrapi("/api/products?fields[0]=slug");
+  const products = await fetchDataFromStrapi(
+    "/api/products?fields[0]=slug",
+    undefined,
+    false,
+    { next: { tags: ["products"] } },
+  );
   return products.map((product) => ({ slug: product.slug }));
 }
 
 export default async function SingleProductPage({ params }: any) {
-  const products = await fetchDataFromStrapi("", params.slug, true);
+  const products = await fetchDataFromStrapi("", params.slug, true, {
+    next: { tags: ["products"] },
+  });
 
   if (!products || products.length === 0) {
     notFound();

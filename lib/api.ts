@@ -6,12 +6,14 @@ const fetchDataFromStrapi = async (
   url: string,
   idOrSlug?: string,
   isSlug = false,
+  options: { cache?: RequestCache; next?: { tags?: string[] } } = {},
 ): Promise<ValidatedProduct[]> => {
   const option = {
     method: "GET",
     headers: {
       Authorization: `Bearer ${STRAPI_API_TOKEN}`,
     },
+    ...options,
   };
   console.log(url, idOrSlug, isSlug);
   let apiUrl = `${STRAPI_API_URL}${url}`;
