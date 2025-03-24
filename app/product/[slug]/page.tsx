@@ -9,7 +9,7 @@ import ProductImageGallery from "@/app/components/ProductImageGallery";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const products = await fetchDataFromStrapi("", params.slug, true, {
-    next: { tags: ["products"] },
+    next: { tags: ["products/slug"] },
   });
 
   const product = products[0];
