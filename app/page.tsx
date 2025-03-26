@@ -26,8 +26,17 @@ export default async function Home() {
         <h2 className=" mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
           Our Products
         </h2>
-        <div className="container   flex justify-center space-x-5 mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center ">
+        <div className="container flex justify-center space-x-5 mx-auto px-4">
+          <div
+            className="grid  items-center
+
+  grid-cols-1   
+  md:grid-cols-3   
+            xl:grid-cols-5
+  gap-12 
+
+            "
+          >
             {data?.map((product) => (
               <ProductCard product={product as Product} key={product.id} />
             ))}

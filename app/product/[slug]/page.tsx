@@ -4,7 +4,6 @@ import fetchDataFromStrapi from "@/lib/api";
 import Navbar from "@/app/components/Navbar";
 import FooterSection from "@/app/components/FooterSection";
 import HeadLabel from "@/app/components/HeadLebel";
-import Image from "next/image";
 import ProductImageGallery from "@/app/components/ProductImageGallery";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {

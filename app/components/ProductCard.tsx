@@ -48,7 +48,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </Link>
 
-      <div className="z-50 bg-emerald-100 p-5 transition-colors duration-300  rounded-3xl group-hover:bg-emerald-200 hover:bg-emerald-200">
+      <div className=" bg-emerald-100 p-5 transition-colors duration-300  rounded-3xl group-hover:bg-emerald-200 hover:bg-emerald-200">
         <CardContent className="p-0">
           <Link href={`/product/${product?.slug}`}>
             <h3 className="text-gray-700 text-md font-bold mb-1">

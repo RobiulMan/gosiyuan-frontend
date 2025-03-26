@@ -28,7 +28,6 @@ const fetchDataFromStrapi = async (
   }
 
   try {
-    console.log("fetchDataFromStrapi", apiUrl, fetchOption);
     const response = await fetch(apiUrl, fetchOption);
 
     if (!response.ok) {
@@ -38,7 +37,6 @@ const fetchDataFromStrapi = async (
 
     const data = await response.json();
 
-    console.log("fetchdata", data);
     // Check the shape of the response data
     if (!data || !data.data) {
       console.error("Unexpected API response format:", data);

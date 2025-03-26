@@ -15,42 +15,42 @@ import ThemeToggleBtn from "./ThemeToggleBtn";
 const categoiresMenu = [
   {
     name: "Home Chargers",
-    href: "/home-charger",
+    href: "/categories/home-charger",
   },
   {
     name: "Car Chargers",
-    href: "/car-charger",
+    href: "/categories/car-charger",
   },
   {
     name: " Wireless Chargers",
-    href: "/wireless-charger",
+    href: "/categories/wireless-charger",
   },
   {
     name: " Power Bank",
-    href: "/power-bank",
+    href: "/categories/power-bank",
   },
   {
     name: " Data Cable",
-    href: "/data-cable",
+    href: "/categories/data-cable",
   },
   {
     name: " Earphones & Speaker",
-    href: "/earphones-speaker",
+    href: "/categories/earphones-speaker",
   },
   {
     name: " Multi Funcaitonal",
-    href: "/multi-functional",
+    href: "/categories/multi-functional",
   },
 
   {
     name: " Aux Cable",
-    href: "/aux-cable",
+    href: "/categories/aux-cable",
   },
 ];
 
-const NavBar = () => {
+const Navbar = () => {
   return (
-    <nav className="w-full  bg-green-200 dark:bg-gray-800 sticky py-6  px-4 z-50">
+    <nav className=" w-full  bg-green-200 dark:bg-gray-800 sticky py-6  px-4 z-50 ">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between ">
         {/* Logo and Brand */}
         <Link href="/">
@@ -59,7 +59,7 @@ const NavBar = () => {
               <Store />
             </div>
             <span className="text-xl font-bold text-foreground">
-              EXCELLUSENSE LLC
+              EXCELLUSENSE LLC.
             </span>
           </div>
         </Link>
@@ -68,7 +68,7 @@ const NavBar = () => {
 
         <div
           className="
-   bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10  
+   bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10  
           
          p-2 hidden md:flex items-center  border border-gray-100 rounded-4xl space-x-6 fixed  left-1/2 transform -translate-x-1/2"
         >
@@ -79,16 +79,13 @@ const NavBar = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
+                className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground "
               >
                 <span>Categories</span>
                 <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl
-"
-            >
+            <DropdownMenuContent className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl ">
               {categoiresMenu.map((category, index) => (
                 <Link href={category.href} key={index}>
                   <DropdownMenuItem className="cursor-pointer">
@@ -138,18 +135,46 @@ const NavBar = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-64">
               <div className="flex flex-col space-y-4 mt-8">
-                <Button variant="ghost" className="justify-start">
-                  Getting started
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Components
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Documentation
-                </Button>
-                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground mt-4">
-                  Get Started
-                </Button>
+                <Link className="p-3 dark:text-gray-200  text-sm  " href="/">
+                  Home
+                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
+                    >
+                      <span>Categories</span>
+                      <ChevronDown size={16} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl
+"
+                  >
+                    {categoiresMenu.map((category, index) => (
+                      <Link href={category.href} key={index}>
+                        <DropdownMenuItem className="cursor-pointer">
+                          {category.name}
+                        </DropdownMenuItem>
+                      </Link>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Link
+                  href="/about"
+                  className="  text-sm dark:text-gray-200 text-muted-foreground hover:text-foreground"
+                >
+                  About
+                </Link>
+
+                <Link
+                  href={"/contact"}
+                  className="  text-sm dark:text-gray-200 text-muted-foreground hover:text-foreground p-3"
+                >
+                  Contact
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -159,4 +184,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

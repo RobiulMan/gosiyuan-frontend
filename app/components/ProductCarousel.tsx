@@ -32,11 +32,11 @@ export default function ProductCarousel({
         align: "start",
         loop: true,
       }}
-      className="w-full max-w-screen-lg mx-left px-4"
+      className="w-full max-w-screen-lg mx-left px-4 md:mt-0 mt-16"
     >
       <CarouselContent className="-ml-1">
         {items.map((item, index) => (
-          <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/5">
+          <CarouselItem key={index} className="pl-6 basis-1/2 lg:basis-1/5">
             <Link href={item.href || "/"} className="block h-full ">
               <Card className="transition-colors duration-300  dark:bg-gray-700 hover:dark:bg-green-200 hover:bg-green-200 hover:dark:text-gray-800  w-full h-full  ">
                 <CardContent className="flex aspect-square  items-center justify-center p-6 h-full">
@@ -61,32 +61,7 @@ export default function ProductCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselNext className="size-12 cursor-pointer text-green-900 hover:dark:bg-green-300 hover:dark:text-gray-900" />
+      <CarouselNext className="size-12 invisible md:visible  cursor-pointer text-green-900 hover:dark:bg-green-300 hover:dark:text-gray-900" />
     </Carousel>
   );
 }
-
-// {[...categories, ...categories].map((category, index) => (
-//   <Link
-//     href={category.href}
-//     key={`${category.id}-${index}`}
-//     className="flex-shrink-0 w-[160px] sm:w-[180px]"
-//     onClick={(e) => isGrabbing && e.preventDefault()}
-//   >
-//     <Card className="flex flex-col items-center p-6 h-full hover:shadow-md transition-shadow dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700">
-//       <div className="w-12 h-12 mb-4">
-//         <Image
-//           src={category.icon}
-//           alt={category.name}
-//           width={48}
-//           height={48}
-//           className="dark:filter dark:invert"
-//           draggable="false"
-//         />
-//       </div>
-//       <span className="text-center text-sm font-medium text-slate-700 dark:text-slate-200">
-//         {category.name}
-//       </span>
-//     </Card>
-//   </Link>
-// ))}

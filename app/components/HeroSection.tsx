@@ -76,13 +76,13 @@ export default function HeroSection() {
             <p className="text-blue-500 dark:text-blue-400 font-medium tracking-wide uppercase">
               A HUGE RANGE OF
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 leading-tight">
+            <h1 className="md:text-left text-center text-2xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 leading-tight">
               Mobile Accessories Wholesale <br />
               Always Available for you.
             </h1>
-            <div className="pt-4">
+            <div className="pt-4 text-center md:text-left">
               <Button
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 dark:bg-emerald-700 dark:hover:bg-green-800"
+                className="  bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 dark:bg-emerald-700 dark:hover:bg-green-800"
                 asChild
               >
                 <Link href="/contact" className="uppercase">
@@ -93,12 +93,22 @@ export default function HeroSection() {
           </div>
 
           {/* Right column - Image */}
-          <div className="relative">
-            <div className="bg-green-200  rounded-full h-[500px] w-[500px] ml-auto relative">
+          <div className="relative flex justify-center items-center w-full md:max-w-[500] mx-auto">
+            <div
+              className="bg-green-200 rounded-full 
+    w-[300] h-[300] 
+    md:w-[500] md:h-[500] 
+    flex items-center justify-center 
+    relative "
+            >
               <Image
                 src={darkitem}
                 alt="Featured brand products"
-                className="absolute top-0 right-0"
+                className="max-w-full max-h-full object-contain absolute md:-bottom-25 md:-right-10 -bottom-10 -right-5"
+                style={{
+                  transform: "scale(1.1)",
+                  transformOrigin: "bottom right",
+                }}
               />
             </div>
           </div>
@@ -113,28 +123,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-// {[...categories, ...categories].map((category, index) => (
-//   <Link
-//     href={category.href}
-//     key={`${category.id}-${index}`}
-//     className="flex-shrink-0 w-[160px] sm:w-[180px]"
-//     onClick={(e) => isGrabbing && e.preventDefault()}
-//   >
-//     <Card className="flex flex-col items-center p-6 h-full hover:shadow-md transition-shadow dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700">
-//       <div className="w-12 h-12 mb-4">
-//         <Image
-//           src={category.icon}
-//           alt={category.name}
-//           width={48}
-//           height={48}
-//           className="dark:filter dark:invert"
-//           draggable="false"
-//         />
-//       </div>
-//       <span className="text-center text-sm font-medium text-slate-700 dark:text-slate-200">
-//         {category.name}
-//       </span>
-//     </Card>
-//   </Link>
-// ))}
