@@ -14,7 +14,7 @@ import Link from "next/link";
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className="group w-64 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
-      <Link href={`/product/${product?.slug}`}>
+      <Link href={`/products/${product?.slug}`}>
         <div className="p-4">
           <Badge
             variant="outline"
@@ -50,7 +50,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       <div className=" bg-emerald-100 p-5 transition-colors duration-300  rounded-3xl group-hover:bg-emerald-200 hover:bg-emerald-200">
         <CardContent className="p-0">
-          <Link href={`/product/${product?.slug}`}>
+          <Link href={`/products/${product?.slug}`}>
             <h3 className="text-gray-700 text-md font-bold mb-1">
               {product.name.slice(0, 40)}...
             </h3>

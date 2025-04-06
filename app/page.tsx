@@ -3,7 +3,7 @@ import Navbar from "@/app/components/Navbar";
 import HeroSection from "./components/HeroSection";
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
-import fetchDataFromStrapi from "@/lib/api";
+import {fetchDataFromStrapi} from "@/lib/api";
 import { Product } from "@/types/typeProduct";
 import AboutSection from "./components/About";
 import HeadLabel from "./components/HeadLebel";

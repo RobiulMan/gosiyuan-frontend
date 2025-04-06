@@ -1,11 +1,13 @@
-import { Product } from "@/types/typeProduct";
+import { Product, ProductCategory } from "@/types/typeProduct";
 import { STRAPI_API_TOKEN, STRAPI_API_URL } from "./urls";
 import { ProductSchema, ValidatedProduct } from "@/types/validation/product";
-const fetchDataFromStrapi = async (
+
+export const fetchDataFromStrapi = async (
   url: string,
   idOrSlug?: string,
   isSlug = false,
   options: { cache?: RequestCache; next?: { tags?: string[] } } = {},
+
 ): Promise<ValidatedProduct[]> => {
   const fetchOption = {
     method: "GET",
@@ -16,7 +18,7 @@ const fetchDataFromStrapi = async (
   };
   let apiUrl = `${STRAPI_API_URL}${url}`;
 
-  // If idOrSlug is provided, construct the URL based on whether it's an ID or slug
+
   if (idOrSlug) {
     if (isSlug) {
       // Query by slug using filter
@@ -42,7 +44,6 @@ const fetchDataFromStrapi = async (
       console.error("Unexpected API response format:", data);
       return [];
     }
-
     // Parse and return the array of products
     const products = Array.isArray(data.data) ? data.data : [data.data];
     return products;
@@ -52,4 +53,75 @@ const fetchDataFromStrapi = async (
   }
 };
 
-export default fetchDataFromStrapi;
+export const fetchCategories = async (
+  options: { cache?: RequestCache; next?: { tags?: string[] } } = {},
+  slug: string,
+) => {
+  const fetchOption = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+    },
+    ...options,
+  };
+
+  const encodedSlug = encodeURIComponent(slug);
+  
+  // Correct URL to filter products by category slug
+  let apiUrl = `${STRAPI_API_URL}/api/products?filters[categories][slug][$eq]=${encodedSlug}&populate=*`;
+
+
+  try {
+    const response = await fetch(apiUrl, fetchOption);
+
+    if (!response.ok) {
+      console.error(`API error: ${response.status} ${response.statusText}`);
+      return [];
+    }
+
+    const data = await response.json();
+    
+
+    // Check the shape of the response data
+    if (!data || !data.data) {
+      console.error("Unexpected API response format:", data);
+      return [];
+    }
+    
+    // Return the array of categories
+    return data.data;
+  } catch (error) {
+    console.error("API or validation error:", error);
+    return [];
+  }
+};
+
+// 3. Add a utility function to get valid category slugs
+export const getAllCategorySlugs = async (
+  options: { cache?: RequestCache; next?: { tags?: string[] } } = {},
+
+) => {
+  const fetchOption = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+    },
+    ...options,
+  };
+  
+  try {
+    const response = await fetch(`${STRAPI_API_URL}/api/categories?populate=*`, fetchOption);
+    const data = await response.json();
+    
+ 
+    if (!response.ok || !data.data) {
+      return [];
+    }
+
+    return data.data
+  } catch (error) {
+    return [];
+  }
+};
+
+

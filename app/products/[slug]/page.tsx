@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import fetchDataFromStrapi from "@/lib/api";
+import {fetchDataFromStrapi} from "@/lib/api";
 import Navbar from "@/app/components/Navbar";
 import FooterSection from "@/app/components/FooterSection";
 import HeadLabel from "@/app/components/HeadLebel";

@@ -57,8 +57,8 @@ export default function SinglePageHeroSection({
                   {index > 0 && <BreadcrumbSeparator />}
                   {crumb.href ? (
                     <BreadcrumbItem>
-                      <BreadcrumbLink>
-                        <Link href={crumb.href ? crumb.href : '/'}>{crumb.label}</Link>
+                      <BreadcrumbLink asChild>
+                        <Link href={crumb.href}>{crumb.label}</Link>
                       </BreadcrumbLink>
                     </BreadcrumbItem>
                   ) : (

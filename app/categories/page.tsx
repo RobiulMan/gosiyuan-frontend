@@ -1,11 +1,11 @@
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
-import fetchDataFromStrapi from "@/lib/api";
+
 import { Product } from "@/types/typeProduct";
 
 export default async function Categories() {
-  const data = await fetchDataFromStrapi("/api/products?populate=*");
+ 
   return (
     <>
       <div className="w-full dark:bg-emerald-900  font-bold text-center p-2 ">

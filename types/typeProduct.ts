@@ -23,6 +23,12 @@ interface Category {
   id: number;
   name: string;
   slug: string;
+  description: string | null;
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  products?: Product[];
 }
 
 export interface Product {
@@ -42,4 +48,16 @@ export interface Product {
   thumbnail: Image;
   product_card_image: Image;
   categories: Category[];
+}
+
+export interface ProductCategory {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  description: null | string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  products: Product[];
 }

@@ -15,15 +15,15 @@ import ThemeToggleBtn from "./ThemeToggleBtn";
 const categoiresMenu = [
   {
     name: "Home Chargers",
-    href: "/categories/home-charger",
+    href: "/categories/home-chargers",
   },
   {
     name: "Car Chargers",
-    href: "/categories/car-charger",
+    href: "/categories/car-chargers",
   },
   {
     name: " Wireless Chargers",
-    href: "/categories/wireless-charger",
+    href: "/categories/wireless-chargers",
   },
   {
     name: " Power Bank",
@@ -35,11 +35,11 @@ const categoiresMenu = [
   },
   {
     name: " Earphones & Speaker",
-    href: "/categories/earphones-speaker",
+    href: "/categories/earphones-and-speaker",
   },
   {
     name: " Multi Funcaitonal",
-    href: "/categories/multi-functional",
+    href: "/categories/multi-funcaitonal",
   },
 
   {
@@ -55,11 +55,9 @@ const Navbar = () => {
         {/* Logo and Brand */}
         <Link href="/">
           <div className="flex items-center space-x-2">
-            <div className=" rounded-md p-1">
-              <Store />
-            </div>
-            <span className="text-xl font-bold text-foreground">
-              EXCELLUSENSE LLC.
+            
+            <span className="text-xl font-bold text-foreground uppercase">
+            excellulead
             </span>
           </div>
         </Link>
