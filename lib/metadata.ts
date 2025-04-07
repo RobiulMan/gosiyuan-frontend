@@ -1,12 +1,24 @@
 import { Metadata } from "next";
 
+// Dynamic URL based on environment
+const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return process.env.NODE_ENV === 'development' 
+    ? 'http://localhost:3000' 
+    : process.env.NEXT_PUBLIC_SITE_URL || 'https://excellusense.com';
+};
+
 export const siteConfig = {
   name: "Excellusense",
   description: "Excellusense Wholesale Trading Supplies . is a leading provider of big brand toiletry and household products to wholesalers and retailers in the US, CA, UK and Europe.",
-  url: "https://excellusense.com",
-  ogImage: "https://excellusense.com/og/excellusense-og-image.jpg",
+  url: getBaseUrl(),
+  ogImage: `${getBaseUrl()}/images/og-image.jpg`, // Relative to domain
 };
-
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
