@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Excellusense",
   description: "Excellusense Wholesale Trading Supplies . is a leading provider of big brand toiletry and household products to wholesalers and retailers in the US, CA, UK and Europe.",
   url: "https://excellusense.com",
-  ogImage: "https://excellusense.com/og-image.jpg",
+  ogImage: "https://excellusense.com/og/excellusense-og-image.jpg",
 };
 
 export const baseMetadata: Metadata = {
