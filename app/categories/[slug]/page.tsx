@@ -15,17 +15,17 @@ import { Product } from "@/types/typeProduct";
 
 
 
-// export async function generateStaticParams() {
-//   // Fetch categories instead of products
-//   const categories = await fetchDataFromStrapi(
-//     "/api/categories?fields[0]=slug",
-//     undefined,
-//     false,
-//     { next: { tags: ["categories"] } },
-//   );
+export async function generateStaticParams() {
+  // Fetch categories instead of products
+  const categories = await fetchDataFromStrapi(
+    "/api/categories?fields[0]=slug",
+    undefined,
+    false,
+    { next: { tags: ["categories"] } },
+  );
   
-//   return categories.map((category) => ({ slug: category.slug }));
-// }
+  return categories.map((category) => ({ slug: category.slug }));
+}
 
 
 export default async function SingleCategory(
@@ -68,7 +68,7 @@ export default async function SingleCategory(
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Categories", href: "/categories" },
-          { label: "Home-Charger" },
+          { label: breadcrumbsText, href: `/categories/${slug}` },
         ]}
       />
       <div className="w-full bg-slate-50 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">

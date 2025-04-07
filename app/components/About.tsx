@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import warehouseImage from "@/public/about/warehouse-Mobile-Accessories-Wholesale-Market.jpg";
 
 export default function AboutSection() {
@@ -20,7 +18,7 @@ export default function AboutSection() {
 
           {/* Right column - Image */}
           <div>
-            <p className="text-blue-500 dark:text-blue-400  mb-12 font-medium tracking-wide uppercase">
+            <p className="text-blue-500 dark:text-blue-400  mb-12 font-medium tracking-widest uppercase">
               About Us
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-600 dark:text-slate-100 leading-tight">

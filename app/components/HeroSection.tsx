@@ -3,14 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ProductCarousel from "@/app/components/ProductCarousel";
-import homechargerLight from "@/public/menu-icons/Home phone charger 1.png";
-import carchargerLight from "@/public/menu-icons/car phone charger1.png";
-import wirelesschargerLight from "@/public/menu-icons/Wireless Charger1.png";
-import powerbankLight from "@/public/menu-icons/Power Bank 1.png";
-import datacableLight from "@/public/menu-icons/Data Cable1.png";
-import earphoneandspeakerLight from "@/public/menu-icons/Earphones and Speaker1.png";
-import carphoneholderLight from "@/public/menu-icons/car phone holder 1.png";
-import auxcableLight from "@/public/menu-icons/AUX Cable1.png";
+import homechargerDark from "@/public/menu-icons/Home phone charger 1.png";
+import carchargerDark from "@/public/menu-icons/car phone charger1.png";
+import wirelesschargerDark from "@/public/menu-icons/Wireless Charger1.png";
+import powerbankDark from "@/public/menu-icons/Power Bank 1.png";
+import datacableDark from "@/public/menu-icons/Data Cable1.png";
+import earphoneandspeakerDark from "@/public/menu-icons/Earphones and Speaker1.png";
+import carphoneholderDark from "@/public/menu-icons/car phone holder 1.png";
+import auxcableDark from "@/public/menu-icons/AUX Cable1.png";
+import multifunctionalDark from "@/public/menu-icons/phone Multi Functional  1.png";
+import screenprotector from "@/public/menu-icons/phone-screen-protector.png"
 import darkitem from "@/public/heroimages/dark-item.png";
 import { CategoryItem } from "@/types/types";
 
@@ -18,53 +20,71 @@ import { CategoryItem } from "@/types/types";
 const categories: CategoryItem[] = [
   {
     id: "homecharger",
-    icon: homechargerLight,
+    icon: homechargerDark,
     name: "Home Chargers",
-    href: "/products/cotton-wool",
+    href: "/categories/home-chargers",
   },
   {
     id: "carcharger",
-    icon: carchargerLight,
+    icon: carchargerDark,
     name: "Car Chargers",
-    href: "/products/deodorant",
+    href: "/categories/car-chargers",
   },
   {
     id: "wirelesscharger",
-    icon: wirelesschargerLight,
+    icon: wirelesschargerDark,
     name: "Wireless Chargers",
-    href: "/products/depilatories",
+    href: "/categories/wireless-chargers",
   },
   {
     id: "powerbank",
-    icon: powerbankLight,
+    icon: powerbankDark,
     name: "Power Bank",
-    href: "/products/fragrance",
+    href: "/categories/power-bank",
   },
   {
     id: "datacable",
-    icon: datacableLight,
-    name: "Data Cable",
-    href: "/products/haircare",
+    icon: datacableDark,
+    name: " Data Cable",
+    href: "/categories/data-cable",
   },
   {
     id: "earphoneandspeaker",
-    icon: earphoneandspeakerLight,
-    name: "Earphones and Speaker",
-    href: "/products/household",
+    icon: earphoneandspeakerDark,
+    name: " Earphones & Speaker",
+    href: "/categories/earphones-and-speaker",
   },
   {
     id: "carphoneholder",
-    icon: carphoneholderLight,
+    icon: carphoneholderDark,
     name: "Car Phone Holder",
-    href: "/products/skincare",
+    href: "/categories/car-phone-holder",
+  },
+  {
+    id: "Multi Funcaitonal",
+    icon: multifunctionalDark,
+    name: " Multi Funcaitonal",
+    href: "/categories/multi-funcaitonal",
   },
   {
     id: "auxcable",
-    icon: auxcableLight,
-    name: "Aux Cable",
-    href: "/products/oral-care",
+    icon: auxcableDark,
+    name: " Aux Cable",
+    href: "/categories/aux-cable",
+  },  
+  {
+    id: "temperedglass",
+    icon: screenprotector,
+    name: "Tempered Glass",
+    href: "/categories/tempered-glass",
   },
 ];
+
+
+
+
+
+
 
 export default function HeroSection() {
   return (

@@ -14,48 +14,45 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
-
 const FooterSection = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background border-t">
+    <footer className="bg-background border-t dark:bg-gray-900">
       <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4 uppercase">
-              excellusense llc
-            </h3>
+            <h3 className="text-xl font-bold mb-4 uppercase">excellusense</h3>
             <p className="mb-4 text-muted-foreground">
               We build amazing digital experiences that make a difference.
             </p>
             <div className="flex space-x-4 mt-4">
-             <Link
+              <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Facebook size={20} />
               </Link>
-             <Link
+              <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Twitter size={20} />
               </Link>
-             <Link
+              <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Instagram size={20} />
               </Link>
-             <Link
+              <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Linkedin size={20} />
               </Link>
-             <Link
+              <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -69,7 +66,7 @@ const FooterSection = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-               <Link
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -77,7 +74,7 @@ const FooterSection = () => {
                 </Link>
               </li>
               <li>
-               <Link
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -85,7 +82,7 @@ const FooterSection = () => {
                 </Link>
               </li>
               <li>
-               <Link
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -93,7 +90,7 @@ const FooterSection = () => {
                 </Link>
               </li>
               <li>
-               <Link
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -101,7 +98,7 @@ const FooterSection = () => {
                 </Link>
               </li>
               <li>
-               <Link
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -148,21 +145,33 @@ const FooterSection = () => {
         <Separator className="my-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
-          <p>© {currentYear} Company Name. All rights reserved.</p>
+          <p>
+            © {currentYear}
+            excellusense. All rights reserved.
+          </p>
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6">
               <li>
-                <Link href="#" className="hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="hover:text-foreground transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="hover:text-foreground transition-colors"
+                >
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="hover:text-foreground transition-colors"
+                >
                   Cookie Policy
                 </Link>
               </li>
@@ -175,4 +184,3 @@ const FooterSection = () => {
 };
 
 export default FooterSection;
-

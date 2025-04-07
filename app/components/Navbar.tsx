@@ -41,10 +41,17 @@ const categoiresMenu = [
     name: " Multi Funcaitonal",
     href: "/categories/multi-funcaitonal",
   },
-
   {
     name: " Aux Cable",
     href: "/categories/aux-cable",
+  },
+  {
+    name: "Car Phone Holder",
+    href: "/products/skincare",
+  },
+  {
+    name: "Tempered Glass",
+    href: "/categories/tempered-glass",
   },
 ];
 
@@ -55,9 +62,8 @@ const Navbar = () => {
         {/* Logo and Brand */}
         <Link href="/">
           <div className="flex items-center space-x-2">
-            
             <span className="text-xl font-bold text-foreground uppercase">
-            excellulead
+              excellusense
             </span>
           </div>
         </Link>
