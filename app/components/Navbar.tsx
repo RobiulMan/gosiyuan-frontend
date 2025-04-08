@@ -1,5 +1,3 @@
-"use client";
-import { useEffect, useState } from "react";
 import { ChevronDown, Menu, Search, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -47,7 +45,7 @@ const categoiresMenu = [
   },
   {
     name: "Car Phone Holder",
-    href: "/products/skincare",
+    href: "/categories/car-phone-holder",
   },
   {
     name: "Tempered Glass",
@@ -63,7 +61,7 @@ const Navbar = () => {
         <Link href="/">
           <div className="flex items-center space-x-2">
             <span className="text-xl font-bold text-foreground uppercase">
-            gosiyuan
+              gosiyuan
             </span>
           </div>
         </Link>
@@ -83,16 +81,16 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground "
+                className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-gray-800 hover:text-gray-500 hover:bg-transparent "
               >
-                      <span>All Products</span>
-                      <ChevronDown size={16} />
+                <span>All Products</span>
+                <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl ">
               {categoiresMenu.map((category, index) => (
                 <Link href={category.href} key={index}>
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem className="cursor-pointer hover:bg-gray-300">
                     {category.name}
                   </DropdownMenuItem>
                 </Link>
@@ -102,14 +100,14 @@ const Navbar = () => {
 
           <Link
             href="/about"
-            className="  text-sm dark:text-gray-200 text-muted-foreground hover:text-foreground"
+            className="  text-sm dark:text-gray-200 hover:text-gray-500 "
           >
             About
           </Link>
 
           <Link
             href={"/contact"}
-            className="  text-sm dark:text-gray-200 text-muted-foreground hover:text-foreground p-3"
+            className="  text-sm dark:text-gray-200  hover:text-gray-500 p-3"
           >
             Contact
           </Link>
@@ -131,21 +129,20 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
+          <div className="flex">
+            {/* Search Button */}
+            <div className="">
+              <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
+                <Search size={20} />
+              </Button>
+            </div>
 
-        <div className="flex">
-          {/* Search Button */}
-          <div className="">
-            <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
-              <Search size={20} />
-            </Button>
+            {/* Theme Toggle Button */}
+            <div className="">
+              <ThemeToggleBtn />
+            </div>
           </div>
 
-          {/* Theme Toggle Button */}
-          <div className="">
-            <ThemeToggleBtn />
-          </div>
-        </div>
-              
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -159,10 +156,7 @@ const Navbar = () => {
                 </Link>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
-                    >
+                    <Button className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground">
                       <span>All Products</span>
                       <ChevronDown size={16} />
                     </Button>
@@ -183,7 +177,7 @@ const Navbar = () => {
 
                 <Link
                   href="/about"
-                  className="  text-sm dark:text-gray-200 text-muted-foreground hover:text-foreground"
+                  className="  text-sm dark:text-gray-200 text-gray-800 "
                 >
                   About
                 </Link>
@@ -194,9 +188,7 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
-
               </div>
-              
             </SheetContent>
           </Sheet>
         </div>

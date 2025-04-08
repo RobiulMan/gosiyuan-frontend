@@ -1,22 +1,19 @@
 import { Metadata } from "next";
 
-
 // Dynamic URL based on environment
 const getBaseUrl = () => {
- 
-  return process.env.NODE_ENV === 'development' 
-    ? 'http://localhost:3000' 
-    : process.env.NEXT_PUBLIC_SITE_URL || 'https://gosiyuan.com';
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3010";
 };
 
 export const siteConfig = {
   name: "gosiyuan",
-  description: "gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
+  description:
+    "Gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
   url: getBaseUrl(),
   ogImage: `${getBaseUrl()}/images/gosiyuan-og-image.jpg`, // Relative to domain
 };
-
-console.log(getBaseUrl())
 
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -26,8 +23,27 @@ export const baseMetadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "wholesale", "mobile products", "accessories products", "bulk order", " mobile  accessories", "electronic accessories", "wholesale trading supplies", "wholesale mobile products", "wholesale accessories products", "wholesale electronic accessories", "bulk order mobile products", "bulk order accessories products", "bulk order electronic accessories", "wholesalers in US", "wholesalers in CA", "wholesalers in UK", "wholesalers in Europe",
-    "wholesalers", "retailers", "trading supplies", "gosiyuan"
+    "wholesale",
+    "mobile products",
+    "accessories products",
+    "bulk order",
+    " mobile  accessories",
+    "electronic accessories",
+    "wholesale trading supplies",
+    "wholesale mobile products",
+    "wholesale accessories products",
+    "wholesale electronic accessories",
+    "bulk order mobile products",
+    "bulk order accessories products",
+    "bulk order electronic accessories",
+    "wholesalers in US",
+    "wholesalers in CA",
+    "wholesalers in UK",
+    "wholesalers in Europe",
+    "wholesalers",
+    "retailers",
+    "trading supplies",
+    "gosiyuan",
   ],
   authors: [{ name: "gosiyuan LLC." }],
   creator: "gosiyuan LLC.",

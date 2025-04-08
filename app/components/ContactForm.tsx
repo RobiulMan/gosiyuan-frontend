@@ -47,7 +47,7 @@ export default function ContactForm() {
           hours and help with any questions you might have about our services.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 ">
           <div className="md:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2 ">
@@ -117,7 +117,8 @@ export default function ContactForm() {
             </form>
           </div>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* First row: Phone and Email side by side */}
             <Card className="bg-emerald-100 hover:bg-emerald-200">
               <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">
@@ -129,10 +130,10 @@ export default function ContactForm() {
                       Call us
                     </h3>
                     <Link
-                      href="tel:+14005006000"
+                      href="tel:+8615360539718"
                       className="text-gray-600 hover:underline"
                     >
-                      +1 400 500 600
+                      +86 15360 539-718
                     </Link>
                   </div>
                 </div>
@@ -150,33 +151,36 @@ export default function ContactForm() {
                       Write an email
                     </h3>
                     <Link
-                      href="mailto:hello@example.com"
                       className="text-gray-600 hover:underline"
+                      href="mailto:support@gosiyuan.com"
                     >
-                      hello@example.com
+                      support@gosiyuan.com
                     </Link>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-emerald-100 hover:bg-emerald-200">
-              <CardContent className="pt-6  ">
+            {/* Second row: Address card takes full width */}
+            <Card className="bg-emerald-100 hover:bg-emerald-200 md:col-span-2">
+              <CardContent className="pt-6">
                 <div className="flex items-start space-x-4">
                   <div className="bg-gray-100 p-2 dark:bg-gray-800 rounded-full">
                     <MapPin className="h-5 w-5" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="font-medium mb-1 dark:text-gray-800">
                       Visit our office
                     </h3>
                     <address className="not-italic text-gray-600">
                       <Link
-                        href="https://maps.google.com/?q=192+Griffin+Street,+Gilbert,+AZ+32521"
+                        href="https://www.google.com/search?q=4C-12%2C4C-13%2CJia+Nian+Business+Center%2C+Building+204%2CHuaqiang+North+Shangbu+Industrial+District%2C+Futian+District%2C+Shenzhen.+China."
                         target="_blank"
                         className="hover:underline"
                       >
-                        192 Griffin Street, Gilbert, AZ 32521
+                        4C-12,4C-13,Jia Nian Business Center, Building
+                        204,Huaqiang North Shangbu Industrial District, Futian
+                        District, Shenzhen. China.
                       </Link>
                     </address>
                   </div>

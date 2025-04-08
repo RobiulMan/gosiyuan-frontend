@@ -25,7 +25,7 @@ const FooterSection = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 uppercase">Gosiyuan</h3>
             <p className="mb-4 text-muted-foreground">
-            Gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.            </p>
+              Gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.            </p>
             <div className="flex space-x-4 mt-4">
               <Link
                 href="#"
@@ -104,18 +104,31 @@ const FooterSection = () => {
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-center">
-                <MapPin className="mr-2 h-5 w-5 text-muted-foreground" />
+                <MapPin className="mr-2 h-20 w-20 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  123 Street, City, Country
+                  4C-12,4C-13,Jia Nian Business Center, Building 204,Huaqiang North Shangbu Industrial District,
+                  Futian District, Shenzhen. China.
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">+1 234 567 890</span>
+                <span className="text-muted-foreground">
+                  <Link
+                    href="tel:+8615360539718"
+                  >
+                    +86 15360 539-718
+                  </Link>
+                </span>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">info@example.com</span>
+                <span className="text-muted-foreground">
+                  <Link
+                    href="mailto:support@gosiyuan.com">
+
+                    support@gosiyuan.com
+                  </Link>
+                </span>
               </li>
             </ul>
           </div>

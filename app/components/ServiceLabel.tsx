@@ -1,14 +1,4 @@
-import React from "react";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import fly from "@/public/service-icons/airplane-green.png";
-
-import darkitem from "@/public/heroimages/dark-item.png";
 
 import airplane from "@/public/service-icons/airplane-green.png";
 import customer from "@/public/service-icons/customer-service-green.png";
@@ -27,12 +17,12 @@ const ServiceLabel = () => {
   const features: FeatureItem[] = [
     {
       icon: airplane, // You'll need to create these SVG icons
-      title: "UK's leading suppliers of",
-      description: "wholesale branded toiletries and household products",
+      title: "UK's, US, CA, EUROP leading suppliers of",
+      description: "wholesale mobile and electronic accessories products",
     },
     {
       icon: money,
-      title: "50 years experience",
+      title: "a decade years experience",
       description: "securing quality products and competitive pricing",
     },
     {
