@@ -1,18 +1,28 @@
 version: "3"
 
 services:
+  # Frontend service
   frontend:
-    container_name: sufiashop-frontend
+    container_name: gosiyuan-frontend
+    image: robiul692/gosiyuan-frontend
     build:
-      context: .
+      context: ./frontend  # Assuming this compose file is at the project root
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
+        - NEXT_PUBLIC_STRAPI_API_URL=http://strapi:1337  # Use service name, not localhost
+        - NEXT_PUBLIC_STRAPI_API_TOKEN=${STRAPI_API_TOKEN}  # Use from .env file
     restart: unless-stopped
     environment:
-      - NEXT_PUBLIC_STRAPI_API_URL={{ NEXT_PUBLIC_STRAPI_API_URL }}
-      - NEXT_PUBLIC_STRAPI_API_TOKEN={{ NEXT_PUBLIC_STRAPI_API_TOKEN }}
+      - NEXT_PUBLIC_STRAPI_API_URL=http://strapi:1337  # For runtime
+      - NEXT_PUBLIC_STRAPI_API_TOKEN=${STRAPI_API_TOKEN}  # For runtime
     ports:
-      - "3000:3000"
+      - "3010:3000"
     networks:
       - strapi
+    depends_on:
+      - strapi  # Ensure Strapi starts first
+
+networks:
+  strapi:
+    external: true
+    name: Strapi  # Connect to existing network named "Strapi"

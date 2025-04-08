@@ -17,20 +17,20 @@ export default function Contact() {
           "inLanguage": "en-US",
           "isPartOf": {
             "@type": "WebSite",
-            "name": "Excellusense Wholesale Trading Supplies Ltd.",
-            "url": "https://excellusense.com"
+            "name": "gosiyuan Wholesale Trading Supplies Ltd.",
+            "url": "https://gosiyuan.com"
           },
           "about": {
             "@type": "Organization",
-            "name": "Excellusense Wholesale Trading Supplies Ltd.",
-            "url": "https://excellusense.com",
-            "logo": "https://excellusense.com/logo.png",
+            "name": "gosiyuan Wholesale Trading Supplies Ltd.",
+            "url": "https://gosiyuan.com",
+            "logo": "https://gosiyuan.com/logo.png",
             "description": "Leading provider of big brand toiletry and household products to wholesalers and retailers"
           },
           "mainEntity": {
             "@type": "ContactPoint",
             "telephone": "+44-XXX-XXXX-XXX",
-            "email": "contact@excellusense.com",
+            "email": "contact@gosiyuan.com",
             "contactType": "customer service",
             "areaServed": ["US", "CA", "UK", "Europe"],
             "availableLanguage": ["English"]

@@ -23,10 +23,9 @@ const FooterSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4 uppercase">excellusense</h3>
+            <h3 className="text-xl font-bold mb-4 uppercase">Gosiyuan</h3>
             <p className="mb-4 text-muted-foreground">
-              We build amazing digital experiences that make a difference.
-            </p>
+            Gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.            </p>
             <div className="flex space-x-4 mt-4">
               <Link
                 href="#"
@@ -63,11 +62,11 @@ const FooterSection = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Home
@@ -75,7 +74,15 @@ const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/categories"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  All Products
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   About
@@ -83,23 +90,7 @@ const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
+                  href="/contact"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Contact
@@ -146,8 +137,8 @@ const FooterSection = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
           <p>
-            © {currentYear}
-            excellusense. All rights reserved.
+            © {currentYear} {" "}
+            gosiyuan. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6">

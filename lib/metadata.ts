@@ -6,14 +6,14 @@ const getBaseUrl = () => {
  
   return process.env.NODE_ENV === 'development' 
     ? 'http://localhost:3000' 
-    : process.env.NEXT_PUBLIC_SITE_URL || 'https://excellusense.com';
+    : process.env.NEXT_PUBLIC_SITE_URL || 'https://gosiyuan.com';
 };
 
 export const siteConfig = {
-  name: "Excellusense",
-  description: "Excellusense Wholesale Trading Supplies . is a leading provider of big brand toiletry and household products to wholesalers and retailers in the US, CA, UK and Europe.",
+  name: "gosiyuan",
+  description: "gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
   url: getBaseUrl(),
-  ogImage: `${getBaseUrl()}/images/excellusense-og-image.jpg`, // Relative to domain
+  ogImage: `${getBaseUrl()}/images/gosiyuan-og-image.jpg`, // Relative to domain
 };
 
 console.log(getBaseUrl())
@@ -26,12 +26,12 @@ export const baseMetadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "wholesale", "toiletry products", "household products", "bulk order", 
-    "wholesalers", "retailers", "trading supplies", "Excellusense"
+    "wholesale", "mobile products", "accessories products", "bulk order", " mobile  accessories", "electronic accessories", "wholesale trading supplies", "wholesale mobile products", "wholesale accessories products", "wholesale electronic accessories", "bulk order mobile products", "bulk order accessories products", "bulk order electronic accessories", "wholesalers in US", "wholesalers in CA", "wholesalers in UK", "wholesalers in Europe",
+    "wholesalers", "retailers", "trading supplies", "gosiyuan"
   ],
-  authors: [{ name: "Excellusense LLC." }],
-  creator: "Excellusense LLC.",
-  publisher: "Excellusense LLC.",
+  authors: [{ name: "gosiyuan LLC." }],
+  creator: "gosiyuan LLC.",
+  publisher: "gosiyuan LLC.",
   formatDetection: {
     email: true,
     address: true,
@@ -52,7 +52,7 @@ export const baseMetadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Excellusense - Wholesale Trading Supplies.",
+        alt: "gosiyuan - Wholesale Trading Supplies.",
       },
     ],
   },
@@ -61,7 +61,7 @@ export const baseMetadata: Metadata = {
     title: `${siteConfig.name} | Wholesale Trading Supplies.`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@excellusense",
+    creator: "@gosiyuan",
   },
   robots: {
     index: true,

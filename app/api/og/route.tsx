@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get('title') || 'SufiaShop';
-  const description = searchParams.get('description') || 'Premium Mobile Accessories';
+  const description = searchParams.get('description') || "Excellusense Wholesale Trading Supplies . is a leading provider of big brand toiletry and household products to wholesalers and retailers in the US, CA, UK and Europe.";
   
   return new ImageResponse(
     (

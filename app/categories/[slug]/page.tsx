@@ -1,19 +1,13 @@
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
 import HeadLabel from "@/app/components/HeadLebel";
-import { Metadata } from "next";
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
 import SinglePageHeroSection from "@/app/components/SiglePageHeroSection";
-import {
-  fetchDataFromStrapi,
-} from "@/lib/api";
+import { fetchDataFromStrapi } from "@/lib/api";
 import { notFound } from "next/navigation";
 import ProductCard from "@/app/components/ProductCard";
 import { Product } from "@/types/typeProduct";
-
-
-
 
 export async function generateStaticParams() {
   // Fetch categories instead of products
@@ -23,20 +17,16 @@ export async function generateStaticParams() {
     false,
     { next: { tags: ["categories"] } },
   );
-  
+
   return categories.map((category) => ({ slug: category.slug }));
 }
 
-
-export default async function SingleCategory(
-  {
-    params,
-  }: {
-    params: Promise<{ slug: string }>
-  }
-
-) {
-  const {slug} = await params;
+export default async function SingleCategory({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const products = await fetchDataFromStrapi(
     "/api/products?populate=*",
     undefined,
@@ -48,10 +38,12 @@ export default async function SingleCategory(
   if (!products || products.length === 0) {
     notFound();
   }
+
   const productFilterByCategory = products.filter(
     (product) =>
       product.categories &&
-      product.categories.filter((category) => category.slug === slug).length > 0
+      product.categories.filter((category) => category.slug === slug).length >
+        0,
   );
   const breadcrumbsText = slug
     .split("-")

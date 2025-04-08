@@ -6,13 +6,22 @@ export const fetchDataFromStrapi = async (
   url: string,
   idOrSlug?: string,
   isSlug = false,
-  options: { cache?: RequestCache; next?: { tags?: string[] } } = {},
+  options: { cache?: RequestCache; next?: { tags?: string[]; revalidate?: number } } = {},
 
 ): Promise<ValidatedProduct[]> => {
   const fetchOption = {
     method: "GET",
     headers: {
       Authorization: `Bearer ${STRAPI_API_TOKEN}`,
+    },
+    next: {
+      // Define default tags based on URL pattern
+      tags: options.next?.tags || [
+        url.includes('/products') ? 'products' : 
+        url.includes('/categories') ? 'categories' : 'content'
+      ],
+      // Optional time-based revalidation as fallback
+      ...(options.next?.revalidate && { revalidate: options.next.revalidate }),
     },
     ...options,
   };

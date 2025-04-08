@@ -12,6 +12,7 @@ import { Product } from "@/types/typeProduct";
 import Link from "next/link";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  console.log(product);
   return (
     <Card className="group w-64 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
       <Link href={`/products/${product?.slug}`}>
@@ -32,7 +33,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               >
                 <Image
                   src={
-                    product?.product_card_image?.formats?.medium?.url ||
+                    product?.product_card_image?.formats?.thumbnail?.url ||
                     product?.image[0]?.formats?.medium?.url ||
                     "/fallback-image.png"
                   }
@@ -52,13 +53,15 @@ const ProductCard = ({ product }: { product: Product }) => {
         <CardContent className="p-0">
           <Link href={`/products/${product?.slug}`}>
             <h3 className="text-gray-700 text-md font-bold mb-1">
-              {product.name.slice(0, 40)}...
+              {product.name.slice(0, 30)}...
             </h3>
           </Link>
         </CardContent>
         <CardFooter className="p-0  flex justify-between">
           <p className=" text-sm text-gray-700 font-medium">
-            ${product?.price}
+            {/* ${product?.price}
+             */}
+            {product?.subtitle?.slice(0, 20)}...
           </p>
           <Button
             size="icon"

@@ -17,8 +17,9 @@ export default async function Home() {
     "/api/products?populate=*",
     undefined,
     false,
-    { next: { tags: ["products"] } },
+    { next: { tags: ["products"], revalidate:3600 } },
   );
+
   return (
     <>
       <HeadLabel />

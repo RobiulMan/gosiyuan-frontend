@@ -22,18 +22,17 @@ export default function AboutSection() {
               About Us
             </p>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-600 dark:text-slate-100 leading-tight">
-              Wholesale Trading <br /> Supplies Ltd.
+            Gosiyuan Wholesale  <br /> Trading Supplies.
             </h1>
             <div className="pt-4">
               <p className=" dark:text-slate-100 tracking-wide text-gray-600 ">
-                Wholesale Trading Supplies is a leading provider of big brand
-                toiletry and household products to wholesalers and retailers in
+                Wholesale Trading Supplies is a leading provider of mobile and electronic accessories  products to wholesalers and retailers in
                 the UK and Europe. From our purpose built, Watford based
                 warehousing unit, we are able to provide a large range of
                 instantly available, bulk order products for next day delivery
                 at competitive prices. For more information, please call our
-                sales team today on 01923 228899 or email
-                jonathan@wholesaletradingsupplies.com
+                sales team today on +000 XXX XXX or email
+                contact@gosiyuan.com
               </p>
             </div>
           </div>

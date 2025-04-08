@@ -9,6 +9,7 @@ import ProductImageGallery from "@/app/components/ProductImageGallery";
 import RichTextRenderer from "@/app/components/RichTextRenderer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const products = await fetchDataFromStrapi("", params.slug, true, {
@@ -46,7 +47,6 @@ export default async function SingleProductPage({ params }: any) {
     notFound();
   }
 
-  console.log(product?.description);
   return (
     <>
       <HeadLabel />
@@ -69,7 +69,7 @@ export default async function SingleProductPage({ params }: any) {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
               <div className="flex items-center justify-between mb-8">
                 <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-4">
-                  ${product.price} USD
+                  {/* ${product.price} USD */}
                 </p>
                 <Button
                   size="icon"
@@ -78,12 +78,23 @@ export default async function SingleProductPage({ params }: any) {
                   <Heart className="h-5 w-5" />
                 </Button>
               </div>
-              <h3 className="text-4xl font-bold text-gray-800 dark:text-white">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
                 {product.name}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-8">
                 {product.subtitle}
               </p>
+
+              <div className="pt-4 text-center md:text-left mt-8">
+                <Button
+                  className="  bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 dark:bg-emerald-700 dark:hover:bg-green-800"
+                  asChild
+                >
+                  <Link href="/contact" className="uppercase">
+                    Contact with us for first order..
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

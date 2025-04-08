@@ -63,7 +63,7 @@ const Navbar = () => {
         <Link href="/">
           <div className="flex items-center space-x-2">
             <span className="text-xl font-bold text-foreground uppercase">
-              excellusense
+            gosiyuan
             </span>
           </div>
         </Link>
@@ -85,8 +85,8 @@ const Navbar = () => {
                 variant="ghost"
                 className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground "
               >
-                <span>Categories</span>
-                <ChevronDown size={16} />
+                      <span>All Products</span>
+                      <ChevronDown size={16} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="dark:bg-transparent dark:border-gray-600 backdrop-blur-2xl ">
@@ -131,6 +131,21 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
+
+        <div className="flex">
+          {/* Search Button */}
+          <div className="">
+            <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
+              <Search size={20} />
+            </Button>
+          </div>
+
+          {/* Theme Toggle Button */}
+          <div className="">
+            <ThemeToggleBtn />
+          </div>
+        </div>
+              
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -148,7 +163,7 @@ const Navbar = () => {
                       variant="ghost"
                       className="flex items-center  dark:hover:bg-transparent dark:hover:text-underline  dark:text-gray-200 space-x-1 text-muted-foreground hover:text-foreground"
                     >
-                      <span>Categories</span>
+                      <span>All Products</span>
                       <ChevronDown size={16} />
                     </Button>
                   </DropdownMenuTrigger>
@@ -179,7 +194,9 @@ const Navbar = () => {
                 >
                   Contact
                 </Link>
+
               </div>
+              
             </SheetContent>
           </Sheet>
         </div>
