@@ -13,7 +13,7 @@ import { baseMetadata } from '@/lib/metadata';
 export const metadata = baseMetadata;
 
 export default async function Home() {
-  const data = await fetchDataFromStrapi(
+  const {data} = await fetchDataFromStrapi(
     "/api/products?populate=*",
     undefined,
     false,

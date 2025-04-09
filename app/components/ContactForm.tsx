@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
 export default function ContactForm() {
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",

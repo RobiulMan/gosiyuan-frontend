@@ -11,14 +11,14 @@ import { Product } from "@/types/typeProduct";
 
 export async function generateStaticParams() {
   // Fetch categories instead of products
-  const categories = await fetchDataFromStrapi(
+  const {data} = await fetchDataFromStrapi(
     "/api/categories?fields[0]=slug",
     undefined,
     false,
     { next: { tags: ["categories"] } },
   );
 
-  return categories.map((category) => ({ slug: category.slug }));
+  return data.map((category) => ({ slug: category.slug }));
 }
 
 export default async function SingleCategory({
@@ -27,7 +27,7 @@ export default async function SingleCategory({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const products = await fetchDataFromStrapi(
+  const {data} = await fetchDataFromStrapi(
     "/api/products?populate=*",
     undefined,
     false,
@@ -35,11 +35,11 @@ export default async function SingleCategory({
   );
 
   // Handle no products case
-  if (!products || products.length === 0) {
+  if (!data || data.length === 0) {
     notFound();
   }
 
-  const productFilterByCategory = products.filter(
+  const productFilterByCategory = data.filter(
     (product) =>
       product.categories &&
       product.categories.filter((category) => category.slug === slug).length >

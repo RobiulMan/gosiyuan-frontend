@@ -4,21 +4,24 @@ import HeadLabel from "../components/HeadLebel";
 
 import Cover from "@/public/singlepagecover/about.png";
 import { Product } from "@/types/typeProduct";
-import { fetchDataFromStrapi } from "@/lib/api";
+import { fetchDataFromStrapi, fetchPaginatedProducts } from "@/lib/api";
 import ProductCard from "../components/ProductCard";
 import SiglePageHeroSection from "../components/SiglePageHeroSection";
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
+import Pagination from "@/app/components/Pagination";
 
-export default async function ProductPage() {
-  // const data = await fetchDataFromStrapi("/api/products?populate=*");
+export default async function ProductPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
 
-  const data = await fetchDataFromStrapi(
-    "/api/products?populate=*",
-    undefined,
-    false,
-    { next: { tags: ["products"], revalidate: 3600 } },
-  );
+
+  const resolvedSearchParams = await searchParams;
+  const currentPage = Number(resolvedSearchParams?.page) || 1;
+  const pageSize = 15;
+
+  const { data, meta } = await fetchPaginatedProducts(currentPage, pageSize);
+
+  const pagination = meta?.pagination;
+
   return (
     <>
       <HeadLabel />
@@ -42,6 +45,7 @@ export default async function ProductPage() {
             ))}
           </div>
         </div>
+        <Pagination currentPage={pagination?.page || 1} totalPages={pagination?.pageCount || 1} baseUrl="/categories" />
       </div>
       <FooterSection />
     </>

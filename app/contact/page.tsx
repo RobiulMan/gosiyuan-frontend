@@ -17,19 +17,20 @@ export default function Contact() {
           "inLanguage": "en-US",
           "isPartOf": {
             "@type": "WebSite",
-            "name": "gosiyuan Wholesale Trading Supplies Ltd.",
+            "name": "gosiyuan Wholesale Trading Supplies.",
             "url": "https://gosiyuan.com"
           },
           "about": {
             "@type": "Organization",
-            "name": "gosiyuan Wholesale Trading Supplies Ltd.",
+            "name": "gosiyuan Wholesale Trading Supplies.",
             "url": "https://gosiyuan.com",
             "logo": "https://gosiyuan.com/logo.png",
-            "description": "Leading provider of big brand toiletry and household products to wholesalers and retailers"
+            "description": 
+            "gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
           },
           "mainEntity": {
             "@type": "ContactPoint",
-            "telephone": "+44-XXX-XXXX-XXX",
+            "telephone": "+86 15360 539-718",
             "email": "contact@gosiyuan.com",
             "contactType": "customer service",
             "areaServed": ["US", "CA", "UK", "Europe"],
@@ -37,10 +38,11 @@ export default function Contact() {
           },
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Watford based warehousing unit",
-            "addressLocality": "Watford",
-            "addressCountry": "UK"
-          }
+            "streetAddress": "4C-12, 4C-13, Jia Nian Business Center, Building 204, Huaqiang North Shangbu Industrial District",
+            "addressLocality": "Futian District",
+            "addressRegion": "Shenzhen",
+            "addressCountry": "China"
+          },
         }}
       />
 

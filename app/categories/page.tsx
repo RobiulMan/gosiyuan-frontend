@@ -1,31 +1,30 @@
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
-import Link from "next/link";
+
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
 import { Product } from "@/types/typeProduct";
-import { fetchDataFromStrapi } from "@/lib/api";
+import { fetchDataFromStrapi, fetchPaginatedProducts } from "@/lib/api";
 import ProductCard from "../components/ProductCard";
 import SiglePageHeroSection from "../components/SiglePageHeroSection";
+import Pagination from "@/app/components/Pagination";
+import HeadLabel from "@/app/components/HeadLebel";
 
-export default async function Categories() {
-  const data = await fetchDataFromStrapi(
-    "/api/products?populate=*",
-    undefined,
-    false,
-    { next: { tags: ["products"], revalidate: 3600 } },
-  );
+
+export default async function Categories({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+
+
+  const resolvedSearchParams = await searchParams;
+  const currentPage = Number(resolvedSearchParams?.page) || 1;
+  const pageSize = 15;
+  
+  const { data, meta } = await fetchPaginatedProducts(currentPage, pageSize);
+  
+  const pagination = meta?.pagination;
 
   return (
     <>
-      <div className="w-full dark:bg-emerald-900  font-bold text-center p-2 ">
-        <p>
-          Call for our wholesale price list{" "}
-          <Link href="tel:+0111111111111" className="text-blue-300">
-            +0111111111111
-          </Link>
-        </p>
-      </div>
+      <HeadLabel />
       <Navbar />
       <SiglePageHeroSection
         imageSrc={HomeChargerCover}
@@ -45,6 +44,7 @@ export default async function Categories() {
             ))}
           </div>
         </div>
+        <Pagination currentPage={pagination?.page ||  1} totalPages={pagination?.pageCount || 1} baseUrl="/categories" />
       </div>
       <FooterSection />
     </>

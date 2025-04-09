@@ -12,11 +12,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const products = await fetchDataFromStrapi("", params.slug, true, {
+  const {data} = await fetchDataFromStrapi("", params.slug, true, {
     next: { tags: ["products/slug"] },
   });
 
-  const product = products[0];
+  const product = data[0];
 
   return product
     ? { title: product.name, description: product.subtitle }
@@ -24,25 +24,25 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const products = await fetchDataFromStrapi(
+  const {data} = await fetchDataFromStrapi(
     "/api/products?fields[0]=slug",
     undefined,
     false,
     { next: { tags: ["products"] } },
   );
-  return products.map((product) => ({ slug: product.slug }));
+  return data.map((product) => ({ slug: product.slug }));
 }
 
 export default async function SingleProductPage({ params }: any) {
-  const products = await fetchDataFromStrapi("", params.slug, true, {
+  const {data} = await fetchDataFromStrapi("", params.slug, true, {
     next: { tags: ["products"] },
   });
 
-  if (!products || products.length === 0) {
+  if (!data || data.length === 0) {
     notFound();
   }
 
-  const product = products[0];
+  const product = data[0];
   if (!product) {
     notFound();
   }

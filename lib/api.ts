@@ -7,8 +7,7 @@ export const fetchDataFromStrapi = async (
   idOrSlug?: string,
   isSlug = false,
   options: { cache?: RequestCache; next?: { tags?: string[]; revalidate?: number } } = {},
-
-): Promise<ValidatedProduct[]> => {
+): Promise<{ data: ValidatedProduct[], meta?: any }> => {
   const fetchOption = {
     method: "GET",
     headers: {
@@ -25,8 +24,8 @@ export const fetchDataFromStrapi = async (
     },
     ...options,
   };
+  
   let apiUrl = `${STRAPI_API_URL}${url}`;
-
 
   if (idOrSlug) {
     if (isSlug) {
@@ -43,23 +42,55 @@ export const fetchDataFromStrapi = async (
 
     if (!response.ok) {
       console.error(`API error: ${response.status} ${response.statusText}`);
-      return [];
+      return { data: [] };
     }
 
-    const data = await response.json();
+    const responseData = await response.json();
 
     // Check the shape of the response data
-    if (!data || !data.data) {
-      console.error("Unexpected API response format:", data);
-      return [];
+    if (!responseData || !responseData.data) {
+      console.error("Unexpected API response format:", responseData);
+      return { data: [] };
     }
-    // Parse and return the array of products
-    const products = Array.isArray(data.data) ? data.data : [data.data];
-    return products;
+    
+    // Parse the array of products
+    const products = Array.isArray(responseData.data) ? responseData.data : [responseData.data];
+
+    // Return both data and meta
+    return { 
+      data: products,
+      meta: responseData.meta
+    };
+
   } catch (error) {
     console.error("API or validation error:", error);
-    return [];
+    return { data: [] };
   }
+};
+
+
+export const fetchPaginatedProducts = async (
+  pageNumber: number = 1,
+  pageSize: number = 10,
+  filters?: Record<string, any>,
+  options: { cache?: RequestCache; next?: { tags?: string[]; revalidate?: number } } = {}
+) => {
+  // Build query string with pagination
+  let query = `?populate=*&pagination[page]=${pageNumber}&pagination[pageSize]=${pageSize}`;
+  
+  // Add any filters
+  if (filters) {
+    for (const [key, value] of Object.entries(filters)) {
+      query += `&filters[${key}]=${encodeURIComponent(value)}`;
+    }
+  }
+  
+  return fetchDataFromStrapi(
+    `/api/products${query}`,
+    undefined,
+    false,
+    options
+  );
 };
 
 export const fetchCategories = async (
