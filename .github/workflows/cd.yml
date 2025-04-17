@@ -1,0 +1,19 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Docker image
+        run: docker pull robiul692/gosiyuan-frontend:latest
+      - name: Delete Old docker container
+        run: docker rm -f gosiyuan-frontend || true
+      - name: Run Docker Container
+        run: docker run -d -p 3010:3000 --name gosiyuan-frontend robiul692/gosiyuan-frontend:latest
