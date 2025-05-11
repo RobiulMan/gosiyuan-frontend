@@ -4,7 +4,7 @@ import HeadLabel from "@/app/components/HeadLebel";
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
 import SinglePageHeroSection from "@/app/components/SiglePageHeroSection";
-import { fetchDataFromStrapi } from "@/lib/api";
+import { fetchCategories, fetchDataFromStrapi } from "@/lib/api";
 import { notFound } from "next/navigation";
 import ProductCard from "@/app/components/ProductCard";
 import { Product } from "@/types/typeProduct";
@@ -27,28 +27,22 @@ export default async function SingleCategory({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const {data} = await fetchDataFromStrapi(
-    "/api/products?populate=*",
-    undefined,
-    false,
-    { next: { tags: ["categories/slug"] } },
-  );
+
+  const  categoriesDatat = await fetchCategories(undefined, slug)
+
 
   // Handle no products case
-  if (!data || data.length === 0) {
+  if (!categoriesDatat || categoriesDatat.length === 0) {
     notFound();
   }
 
-  const productFilterByCategory = data.filter(
-    (product) =>
-      product.categories &&
-      product.categories.filter((category) => category.slug === slug).length >
-        0,
-  );
+
+
   const breadcrumbsText = slug
     .split("-")
     .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
 
   return (
     <>
@@ -67,10 +61,10 @@ export default async function SingleCategory({
         <h2 className=" mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
           {breadcrumbsText}
         </h2>
-        <div className="container  flex justify-center space-x-5 mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center ">
+        <div className="container  flex justify-center space-x-5 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  items-center">   
             {/* data has to be rendred */}
-            {productFilterByCategory.map((product: any) => (
+            {categoriesDatat.map((product: any) => (
               <ProductCard product={product as Product} key={product.id} />
             ))}
             {/* Example of a single product card */}

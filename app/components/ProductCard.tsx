@@ -10,11 +10,18 @@ import { Heart } from "lucide-react";
 import darkitem from "@/public/heroimages/dark-item.png";
 import { Product } from "@/types/typeProduct";
 import Link from "next/link";
+import WishlistButton from "./WishlistButton";
 
-const ProductCard = ({ product }: { product: Product }) => {
-  console.log(product);
+const ProductCard =({
+  product,
+  onRemove,
+}: {
+  product: Product;
+  onRemove?: (productId: number) => void;
+})  => {
+
   return (
-    <Card className="group w-64 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
+    <Card className="group w-75 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
       <Link href={`/products/${product?.slug}`}>
         <div className="p-4">
           <Badge
@@ -63,12 +70,7 @@ const ProductCard = ({ product }: { product: Product }) => {
              */}
             {product?.subtitle?.slice(0, 20)}...
           </p>
-          <Button
-            size="icon"
-            className="rounded-full bg-gray-700 text-white hover:bg-gray-900 cursor-pointer "
-          >
-            <Heart className="h-5 w-5" />
-          </Button>
+         <WishlistButton product={product} onRemove={onRemove} />
         </CardFooter>
       </div>
     </Card>

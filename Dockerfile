@@ -30,7 +30,9 @@ ENV NEXT_PUBLIC_STRAPI_API_TOKEN=${NEXT_PUBLIC_STRAPI_API_TOKEN}
 
 
 # Build Next.js application
-RUN npm run build
+# Clean and build
+RUN rm -rf .next && npm run build
+
 
 # Production image, copy all the files and run next
 FROM base AS runner

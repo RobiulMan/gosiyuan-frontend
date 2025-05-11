@@ -11,8 +11,13 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
-export async function generateMetadata({ params }: any): Promise<Metadata> {
-  const {data} = await fetchDataFromStrapi("", params.slug, true, {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }>}): Promise<Metadata> {
+  const {slug} = await params;
+  if (!slug) {
+    return { title: "Product Not Found" };
+  }
+
+  const { data } = await fetchDataFromStrapi("", slug, true, {
     next: { tags: ["products/slug"] },
   });
 
@@ -24,7 +29,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const {data} = await fetchDataFromStrapi(
+  const { data } = await fetchDataFromStrapi(
     "/api/products?fields[0]=slug",
     undefined,
     false,
@@ -33,8 +38,13 @@ export async function generateStaticParams() {
   return data.map((product) => ({ slug: product.slug }));
 }
 
-export default async function SingleProductPage({ params }: any) {
-  const {data} = await fetchDataFromStrapi("", params.slug, true, {
+export default async function SingleProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const {slug} = await params;
+  if (!slug) {
+    return notFound();
+  }
+
+  const { data } = await fetchDataFromStrapi("", slug, true, {
     next: { tags: ["products"] },
   });
 

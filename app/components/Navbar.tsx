@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Search, Store } from "lucide-react";
+import { ChevronDown, Heart, Menu, Search, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -113,14 +113,20 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex">
+        <div className="flex items-center">
           {/* Search Button */}
           <div className="hidden md:block">
             <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
               <Search size={20} />
             </Button>
           </div>
-
+          <div className="hidden md:block" >
+            <Link href="/wishlist"
+              className=""
+            >
+              <Heart size={20} />
+            </Link>
+          </div>
           {/* Theme Toggle Button */}
           <div className="hidden md:block">
             <ThemeToggleBtn />
@@ -129,14 +135,21 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
-          <div className="flex">
+          <div className="flex items-center justify-center space-x-2">
             {/* Search Button */}
             <div className="">
               <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
                 <Search size={20} />
               </Button>
             </div>
-
+            {/* Wishlist Button */}
+            <div >
+              <Link href="/wishlist"
+              className=""
+              >
+                <Heart size={20} />
+              </Link>
+            </div>
             {/* Theme Toggle Button */}
             <div className="">
               <ThemeToggleBtn />
