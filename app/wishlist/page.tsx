@@ -9,7 +9,7 @@ import SiglePageHeroSection from "../components/SiglePageHeroSection";
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
 import { useEffect, useState, useRef } from "react";
-import ProductCardSkeleton from "../components/skeletons/ProductCardSkeletion";
+
 
 export default function WishlistPage() {
   const [wishlist, setWishlist] = useState<Product[]>([]);
