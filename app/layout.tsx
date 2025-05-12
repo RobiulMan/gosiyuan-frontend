@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 import { baseMetadata } from '@/lib/metadata';
+import Script from "next/script";
 
 export const metadata = baseMetadata;
 
@@ -37,6 +38,17 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+
+            {/* Google Analytics */}
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-6XB7G0C49N"></Script>
+          <Script>
+            {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6XB7G0C49N');
+            `}
+          </Script>
         </body>
       </html>
     </>
