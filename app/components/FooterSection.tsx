@@ -157,7 +157,7 @@ const FooterSection = () => {
             <ul className="flex space-x-6">
               <li>
                 <Link
-                  href="#"
+                  href="/privacy"
                   className="hover:text-foreground transition-colors"
                 >
                   Privacy Policy
@@ -165,7 +165,7 @@ const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/terms-conditions"
                   className="hover:text-foreground transition-colors"
                 >
                   Terms of Service
@@ -173,7 +173,7 @@ const FooterSection = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/cookie-policy"
                   className="hover:text-foreground transition-colors"
                 >
                   Cookie Policy

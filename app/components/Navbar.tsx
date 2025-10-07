@@ -1,4 +1,11 @@
-import { ChevronDown, Heart, Menu, Search, Store } from "lucide-react";
+import {
+  ChevronDown,
+  Heart,
+  Menu,
+  Search,
+  ShoppingCart,
+  User,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,6 +16,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import ThemeToggleBtn from "./ThemeToggleBtn";
+import FloatingThemeToggle from "./buttons/FloatingThemeToggleButton";
 
 const categoiresMenu = [
   {
@@ -111,26 +119,37 @@ const Navbar = () => {
           >
             Contact
           </Link>
-        </div>
 
-        <div className="flex items-center">
-          {/* Search Button */}
-          <div className="hidden md:block">
+          <div className="">
             <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
               <Search size={20} />
             </Button>
           </div>
-          <div className="hidden md:block" >
-            <Link href="/wishlist"
-              className=""
-            >
+        </div>
+
+        <div className="flex items-center">
+          {/* Wishlist Button */}
+          <div className="hidden md:block">
+            <Link href="/wishlist" className="">
               <Heart size={20} />
             </Link>
           </div>
-          {/* Theme Toggle Button */}
-          <div className="hidden md:block">
-            <ThemeToggleBtn />
+          {/*Cart Button */}
+          <div className="hidden md:block ml-4 mr-4">
+            <Link href="/cart" className="">
+              <ShoppingCart size={20} />
+            </Link>
           </div>
+
+          {/*User login Button */}
+          <div className="hidden md:block">
+            <Link href="/account/login" className="">
+              <User size={20} />
+            </Link>
+          </div>
+
+          {/* Theme floating Toggle Button */}
+          <FloatingThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -142,17 +161,25 @@ const Navbar = () => {
                 <Search size={20} />
               </Button>
             </div>
+
             {/* Wishlist Button */}
-            <div >
-              <Link href="/wishlist"
-              className=""
-              >
+            <div className="">
+              <Link href="/wishlist" className="">
                 <Heart size={20} />
               </Link>
             </div>
-            {/* Theme Toggle Button */}
+            {/*Cart Button */}
+            <div className=" ml-4 mr-4">
+              <Link href="/cart" className="">
+                <ShoppingCart size={20} />
+              </Link>
+            </div>
+
+            {/*User login Button */}
             <div className="">
-              <ThemeToggleBtn />
+              <Link href="/account/login" className="">
+                <User size={20} />
+              </Link>
             </div>
           </div>
 

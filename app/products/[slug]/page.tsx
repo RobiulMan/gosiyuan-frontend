@@ -9,10 +9,18 @@ import ProductImageGallery from "@/app/components/ProductImageGallery";
 import RichTextRenderer from "@/app/components/RichTextRenderer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Link from "next/link";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }>}): Promise<Metadata> {
-  const {slug} = await params;
+import Link from "next/link";
+import QuantityButton from "@/app/components/QuantityButton";
+import { addToCart } from "@/store/cartSlice";
+import ProductActions from "@/app/components/ProductAction";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
   if (!slug) {
     return { title: "Product Not Found" };
   }
@@ -38,8 +46,12 @@ export async function generateStaticParams() {
   return data.map((product) => ({ slug: product.slug }));
 }
 
-export default async function SingleProductPage({ params }: { params: Promise<{ slug: string }> }) {
-  const {slug} = await params;
+export default async function SingleProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   if (!slug) {
     return notFound();
   }
@@ -77,34 +89,7 @@ export default async function SingleProductPage({ params }: { params: Promise<{ 
 
             {/* Product details */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center justify-between mb-8">
-                <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-4">
-                  {/* ${product.price} USD */}
-                </p>
-                <Button
-                  size="icon"
-                  className="rounded-full bg-gray-700 text-white hover:bg-gray-900 cursor-pointer "
-                >
-                  <Heart className="h-5 w-5" />
-                </Button>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-                {product.name}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-8">
-                {product.subtitle}
-              </p>
-
-              <div className="pt-4 text-center md:text-left mt-8">
-                <Button
-                  className="  bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 dark:bg-emerald-700 dark:hover:bg-green-800"
-                  asChild
-                >
-                  <Link href="/contact" className="uppercase">
-                    Contact with us for first order..
-                  </Link>
-                </Button>
-              </div>
+              <ProductActions product={product} />
             </div>
           </div>
         </div>

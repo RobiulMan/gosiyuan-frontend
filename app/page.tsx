@@ -8,22 +8,20 @@ import { Product } from "@/types/typeProduct";
 import AboutSection from "./components/About";
 import HeadLabel from "./components/HeadLebel";
 import ServiceLabel from "./components/ServiceLabel";
-import { baseMetadata } from '@/lib/metadata';
-
+import { baseMetadata } from "@/lib/metadata";
 export const metadata = baseMetadata;
 
 export default async function Home() {
-  const {data} = await fetchDataFromStrapi(
+  const { data } = await fetchDataFromStrapi(
     "/api/products?populate=*",
     undefined,
     false,
-    { next: { tags: ["products"], revalidate:3600 } },
+    { next: { tags: ["products"], revalidate: 3600 } },
   );
 
   return (
     <>
       <HeadLabel />
-
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -32,7 +30,7 @@ export default async function Home() {
           Our Products
         </h2>
         <div className="container  flex justify-center space-x-5 mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  items-center">   
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  items-center">
             {data?.map((product) => (
               <ProductCard product={product as Product} key={product.id} />
             ))}

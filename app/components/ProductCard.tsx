@@ -12,14 +12,13 @@ import { Product } from "@/types/typeProduct";
 import Link from "next/link";
 import WishlistButton from "./WishlistButton";
 
-const ProductCard =({
+const ProductCard = ({
   product,
   onRemove,
 }: {
   product: Product;
   onRemove?: (productId: number) => void;
-})  => {
-
+}) => {
   return (
     <Card className="group w-75 overflow-hidden shadow-md rounded-3xl dark:bg-slate-700 dark:border-none border-gray-200 py-0 ">
       <Link href={`/products/${product?.slug}`}>
@@ -64,13 +63,18 @@ const ProductCard =({
             </h3>
           </Link>
         </CardContent>
-        <CardFooter className="p-0  flex justify-between">
-          <p className=" text-sm text-gray-700 font-medium">
-            {/* ${product?.price}
-             */}
-            {product?.subtitle?.slice(0, 20)}...
+        <CardFooter className="p-0 mt-4 flex justify-between items-center ">
+          <p className="  text-gray-700 font-medium    ">
+            {/* ${product?.price} */}
+            <Badge
+              variant="outline"
+              className=" text-sm dark:text-gray-900 text-gray-900 border-1 border-gray-500   dark:border-gray-500 font-bold  rounded-full -2 "
+            >
+              ${product?.price} USD
+            </Badge>
+            {/* {product?.subtitle?.slice(0, 20)}... */}
           </p>
-         <WishlistButton product={product} onRemove={onRemove} />
+          <WishlistButton product={product} onRemove={onRemove} />
         </CardFooter>
       </div>
     </Card>
