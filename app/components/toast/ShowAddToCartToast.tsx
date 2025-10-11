@@ -5,6 +5,7 @@ interface ProductData {
   name: string;
   imageUrl: string;
 }
+
 // Mock placeholder image URL for the example
 const PLACEHOLDER_IMAGE = "https://placehold.co/40x40/333333/cccccc?text=P";
 

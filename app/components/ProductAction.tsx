@@ -7,10 +7,8 @@ import QuantityButton from "@/app/components/QuantityButton";
 import { addToCart } from "@/store/cartSlice";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { showAddToCartToast } from "./toast/ShowAddToCartToast";
 
-const PLACEHOLDER_IMAGE = "https://placehold.co/40x40/333333/cccccc?text=P";
 interface ProductActionsProps {
   product: any; // Replace with your Product type
 }
@@ -23,13 +21,16 @@ export default function ProductActions({ product }: ProductActionsProps) {
 
   const handleAddToCart = () => {
     setIsAddingToCart(true);
-    dispatch(addToCart({ ...product, quantity }) as any);
+    dispatch(
+      addToCart({ ...product, quantity, quantityPrice: product.price }) as any,
+    );
 
     const timeoutPromice = new Promise<{ name: string; imageUrl: string }>(
       (resolve) => {
         setTimeout(() => {
           resolve({ name: product.name, imageUrl: product.thumbnail.url });
           setIsAddingToCart(false);
+          setQuantity(1);
         }, 1000);
       },
     );

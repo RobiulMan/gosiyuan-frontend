@@ -1,3 +1,4 @@
+"use client";
 import {
   ChevronDown,
   Heart,
@@ -15,8 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
-import ThemeToggleBtn from "./ThemeToggleBtn";
 import FloatingThemeToggle from "./buttons/FloatingThemeToggleButton";
+import { useSelector } from "react-redux";
+import { Badge } from "@/components/ui/badge";
 
 const categoiresMenu = [
   {
@@ -62,6 +64,11 @@ const categoiresMenu = [
 ];
 
 const Navbar = () => {
+  const { cartItems } = useSelector((state: any) => state.cart);
+  const totalItems = cartItems.reduce(
+    (acc: number, item: any) => acc + item.quantity,
+    0,
+  );
   return (
     <nav className=" w-full  bg-green-200 dark:bg-gray-800 sticky py-6  px-4 z-50 ">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between ">
@@ -135,9 +142,14 @@ const Navbar = () => {
             </Link>
           </div>
           {/*Cart Button */}
-          <div className="hidden md:block ml-4 mr-4">
-            <Link href="/cart" className="">
+          <div className="  hidden md:block ml-4 mr-4">
+            <Link href="/cart" className="relative inline-flex items-center">
               <ShoppingCart size={20} />
+              {cartItems.length > 0 && (
+                <Badge className="absolute -top-4 -right-4 h-5 w-5 flex items-center justify-center rounded-full bg-red-600 text-[10px] font-semibold text-white p-2.5 leading-none">
+                  {totalItems > 99 ? "99+" : totalItems}
+                </Badge>
+              )}
             </Link>
           </div>
 

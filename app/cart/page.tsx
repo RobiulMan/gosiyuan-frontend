@@ -2,79 +2,39 @@
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
 import HeadLabel from "../components/HeadLebel";
-
-import { Product } from "@/types/typeProduct";
-import ProductCard from "../components/ProductCard";
 import SiglePageHeroSection from "../components/SiglePageHeroSection";
 
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
-import { useEffect, useState, useRef } from "react";
+import ProductCartCardList from "../components/ProductCartCardList";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
-export default function CartPage() {
-  const [wishlist, setWishlist] = useState<Product[]>([]);
-  const [visibleItems, setVisibleItems] = useState<Product[]>([]);
-  const [page, setPage] = useState(1);
-  const [initialLoading, setInitialLoading] = useState(true); // Separate initial loading state
-  const [scrollLoading, setScrollLoading] = useState(false); // Loading state for infinite scrolling
-  const observerRef = useRef<HTMLDivElement | null>(null);
+export default function ShippingCartPage() {
+  const { cartItems } = useSelector((state: any) => state.cart);
 
-  const itemsPerPage = 10; // Number of items to load per page
-
-  // Fetch wishlist data from localStorage
-  useEffect(() => {
-    setInitialLoading(true); // Set initial loading to true before fetching
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setWishlist(storedWishlist);
-    setVisibleItems(storedWishlist.slice(0, itemsPerPage)); // Load the first page
-    setInitialLoading(false); // Set initial loading to false after fetching
-  }, []);
-
-  // Infinite scrolling logic
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadMoreItems();
-        }
-      },
-      { threshold: 1.0 },
-    );
-
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
-
-    return () => {
-      if (observerRef.current) {
-        observer.unobserve(observerRef.current);
-      }
-    };
-  }, [wishlist, page]);
-
-  const loadMoreItems = () => {
-    if (scrollLoading) return; // Prevent multiple triggers
-    setScrollLoading(true);
-
-    const nextPage = page + 1;
-    const startIndex = (nextPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-    const newItems = wishlist.slice(startIndex, endIndex);
-    if (newItems.length > 0) {
-      setVisibleItems((prevItems) => [...prevItems, ...newItems]);
-      setPage(nextPage);
-    }
-    setScrollLoading(false); // Reset scroll loading state
-  };
-
-  const handleRemoveFromWishlist = (productId: number) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((product) => product.id !== productId),
-    );
-    setVisibleItems((prevVisibleItems) =>
-      prevVisibleItems.filter((product) => product.id !== productId),
-    );
-  };
+  const totalItems = cartItems?.reduce(
+    (acc: number, item: any) => acc + item.quantityPrice,
+    0,
+  );
   return (
     <>
       <HeadLabel />
@@ -83,37 +43,136 @@ export default function CartPage() {
       <SiglePageHeroSection
         imageSrc={HomeChargerCover}
         title="Shopping Cart"
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Shopping Cart" }]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Shipping Cart" }]}
       />
       <div className="w-full bg-slate-50 dark:bg-gray-900 py-12 relative overflow-hidden transition-colors duration-300">
-        <div className="container flex justify-center space-x-5 mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-center">
-            {/* Render skeletons during initial loading */}
-            {visibleItems.length > 0 ? (
-              visibleItems.map((product) => (
-                <ProductCard
-                  product={product}
-                  key={product.id}
-                  onRemove={handleRemoveFromWishlist}
-                />
-              ))
-            ) : (
-              <p className="text-center text-gray-600 dark:text-gray-300">
-                Your wishlist is empty.
-              </p>
-            )}
+        <h2 className="mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
+          Shipping Cart
+        </h2>
+        <main className="container mx-auto my-8 grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]  ">
+          <div>
+            <h1 className="text-2xl font-bold">Your Cart</h1>
+            <div className="mt-4 space-y-4">
+              {cartItems.length === 0 ? (
+                <p className="text-center text-gray-600 dark:text-gray-300">
+                  Your cart is empty.
+                </p>
+              ) : (
+                cartItems.map((item) => (
+                  <ProductCartCardList item={item} key={item.id} />
+                ))
+              )}
+            </div>
           </div>
-        </div>
+          <div className="space-y-4  ">
+            <Card className="dark:bg-slate-800">
+              <CardHeader>
+                <CardTitle>Order Summary</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span>Subtotal</span>
+                  <span>${totalItems > 0 ? totalItems : 0}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Taxes</span>
+                  <span>$0.0</span>
+                </div>
+                <Separator className="dark:bg-slate-600" />
+                <div className="flex items-center justify-between font-medium">
+                  <span>Total</span>
+                  <span>${totalItems > 0 ? totalItems : 0}</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="dark:bg-slate-800">
+              <CardHeader>
+                <CardTitle>Shipping &amp; Payment</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      placeholder="John Doe"
+                      className="dark:border-slate-500"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      className="dark:border-slate-500"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="address">Address</Label>
+                  <Textarea
+                    id="address"
+                    placeholder="123 Main St, Anytown USA"
+                    className="dark:border-slate-500"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input
+                    id="phone"
+                    type="phone"
+                    placeholder="+1 234 567 890"
+                    className="dark:border-slate-500"
+                  />
+                </div>
+                <div className="w-full">
+                  <Label htmlFor="payment" className="mb-3.5">
+                    Payment Method
+                  </Label>
+                  <Select id="payment">
+                    <SelectTrigger className=" cursor-pointer w-full dark:bg-gray-900">
+                      <SelectValue placeholder="Select payment method" />
+                    </SelectTrigger>
+                    <SelectContent className=" cursor-pointer dark:bg-slate-700 w-full">
+                      <SelectItem value="credit-card">Credit Card</SelectItem>
+                      <SelectItem value="paypal">PayPal</SelectItem>
+                      <SelectItem value="apple-pay">Apple Pay</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full cursor-pointer  ">Place Order</Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </main>
         {/* Observer element */}
-        <div ref={observerRef} className="h-10">
-          {/* Render skeletons during infinite scrolling */}
-          {/* {scrollLoading &&
+        {/* <div ref={observerRef} className="h-10"> */}
+        {/* Render skeletons during infinite scrolling */}
+        {/* {scrollLoading &&
             Array.from({ length: 10 }).map((_, index) => (
               <ProductCardSkeleton key={`scroll-${index}`} />
             ))} */}
-        </div>
+        {/* </div> */}
       </div>
       <FooterSection />
     </>
   );
 }
+
+// {initialLoading
+//               ? Array.from({ length: itemsPerPage }).map((_, index) => (
+//                   <ProductCardSkeleton key={index} />
+//                 ))
+//               : visibleItems.length > 0 ? (
+//                   visibleItems.map((product) => (
+//                     <ProductCard product={product} key={product.id} onRemove={handleRemoveFromWishlist}/>
+//                   ))
+//                 ) : (
+//                   <p className="text-center text-gray-600 dark:text-gray-300">
+//                     Your wishlist is empty.
+//                   </p>
+//                 )}
