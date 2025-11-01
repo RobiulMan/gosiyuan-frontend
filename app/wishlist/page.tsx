@@ -6,17 +6,19 @@ import HeadLabel from "../components/HeadLebel";
 import { Product } from "@/types/typeProduct";
 import ProductCard from "../components/ProductCard";
 import SiglePageHeroSection from "../components/SiglePageHeroSection";
-
+import { useAppSelector } from "@/store/hooks";
+import { selectWishlistItems } from "@/store/wishlistSlice";
 import HomeChargerCover from "@/public/singlepagecover/homecharger.png";
 import { useEffect, useState, useRef } from "react";
-
+import ProductCardSkeletonList from "../components/skeleton/ProductCardSkeletonList";
 
 export default function WishlistPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const [wishlist, setWishlist] = useState<Product[]>([]);
-  const [visibleItems, setVisibleItems] = useState<Product[]>([]);
+  const [visibleItems, setVisibleItems] = useState<Product[]>([]); // Add this state
   const [page, setPage] = useState(1);
-  const [initialLoading, setInitialLoading] = useState(true); // Separate initial loading state
-  const [scrollLoading, setScrollLoading] = useState(false); // Loading state for infinite scrolling
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [scrollLoading, setScrollLoading] = useState(false);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   const itemsPerPage = 10; // Number of items to load per page
@@ -24,10 +26,16 @@ export default function WishlistPage() {
   // Fetch wishlist data from localStorage
   useEffect(() => {
     setInitialLoading(true); // Set initial loading to true before fetching
-    const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    setWishlist(storedWishlist);
-    setVisibleItems(storedWishlist.slice(0, itemsPerPage)); // Load the first page
-    setInitialLoading(false); // Set initial loading to false after fetching
+    // const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    // setWishlist(storedWishlist);
+    // setVisibleItems(storedWishlist.slice(0, itemsPerPage)); // Load the first page
+    // setInitialLoading(false); // Set initial loading to false after fetching
+  }, []);
+
+  const wishlistItems = useAppSelector(selectWishlistItems);
+  useEffect(() => {
+    // Simulate loading
+    setTimeout(() => setIsLoading(false), 1000);
   }, []);
 
   // Infinite scrolling logic
@@ -38,7 +46,7 @@ export default function WishlistPage() {
           loadMoreItems();
         }
       },
-      { threshold: 1.0 }
+      { threshold: 1.0 },
     );
 
     if (observerRef.current) {
@@ -62,7 +70,7 @@ export default function WishlistPage() {
 
     const newItems = wishlist.slice(startIndex, endIndex);
     if (newItems.length > 0) {
-      setVisibleItems((prevItems) => [...prevItems, ...newItems]);
+      // setVisibleItems((prevItems: any) => [...prevItems, ...newItems]);
       setPage(nextPage);
     }
     setScrollLoading(false); // Reset scroll loading state
@@ -70,10 +78,10 @@ export default function WishlistPage() {
 
   const handleRemoveFromWishlist = (productId: number) => {
     setWishlist((prevWishlist) =>
-      prevWishlist.filter((product) => product.id !== productId)
+      prevWishlist.filter((product) => product.id !== productId),
     );
     setVisibleItems((prevVisibleItems) =>
-      prevVisibleItems.filter((product) => product.id !== productId)
+      prevVisibleItems.filter((product) => product.id !== productId),
     );
   };
   return (
@@ -91,18 +99,27 @@ export default function WishlistPage() {
           My Favorites
         </h2>
         <div className="container flex justify-center space-x-5 mx-auto">
+          {/* <div */}
+          {/*   className={`${wishlistItems.length > 0 ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-center" : ""}`} */}
+          {/* > */}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-center">
             {/* Render skeletons during initial loading */}
-            {
-              visibleItems.length > 0 ? (
-                  visibleItems.map((product) => (
-                    <ProductCard product={product} key={product.id} onRemove={handleRemoveFromWishlist}/>
-                  ))
-                ) : (
-                  <p className="text-center text-gray-600 dark:text-gray-300">
-                    Your wishlist is empty.
-                  </p>
-                )}
+            {isLoading ? (
+              <ProductCardSkeletonList count={wishlistItems.length || 8} />
+            ) : wishlistItems.length > 0 ? (
+              wishlistItems.map((product) => (
+                <ProductCard
+                  product={product}
+                  key={product.id}
+                  onRemove={handleRemoveFromWishlist}
+                />
+              ))
+            ) : (
+              <p className="text-center text-gray-600 dark:text-gray-300">
+                Your wishlist is empty.
+              </p>
+            )}
           </div>
         </div>
         {/* Observer element */}
@@ -118,7 +135,6 @@ export default function WishlistPage() {
     </>
   );
 }
-
 
 // {initialLoading
 //               ? Array.from({ length: itemsPerPage }).map((_, index) => (

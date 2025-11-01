@@ -134,7 +134,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex ">
           {/* Wishlist Button */}
           <div className="hidden md:block">
             <Link href="/wishlist" className="">
@@ -168,8 +168,8 @@ const Navbar = () => {
         <div className="md:hidden flex items-center space-x-2">
           <div className="flex items-center justify-center space-x-2">
             {/* Search Button */}
-            <div className="">
-              <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
+            <div>
+              <Button className="   bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
                 <Search size={20} />
               </Button>
             </div>

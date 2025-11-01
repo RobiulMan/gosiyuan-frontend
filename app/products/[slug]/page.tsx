@@ -1,18 +1,13 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { Heart } from "lucide-react";
 import { fetchDataFromStrapi } from "@/lib/api";
 import Navbar from "@/app/components/Navbar";
 import FooterSection from "@/app/components/FooterSection";
 import HeadLabel from "@/app/components/HeadLebel";
 import ProductImageGallery from "@/app/components/ProductImageGallery";
 import RichTextRenderer from "@/app/components/RichTextRenderer";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import Link from "next/link";
-import QuantityButton from "@/app/components/QuantityButton";
-import { addToCart } from "@/store/cartSlice";
 import ProductActions from "@/app/components/ProductAction";
 
 export async function generateMetadata({

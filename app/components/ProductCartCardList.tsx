@@ -3,18 +3,10 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { MinusIcon, PlusIcon, Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
-// import { updateQuantity, removeFromCart } from "@/store/cartSlice";
+import { updateQuantity, removeFromCart } from "@/store/cartSlice";
 import Image from "next/image";
-
-interface CartItem {
-  id: number;
-  name: string;
-  subtitle?: string;
-  price: number;
-  quantity: number;
-  image?: { url: string };
-  slug: string;
-}
+import { toast } from "sonner";
+import { CartItem } from "@/types/typeProduct";
 
 interface ProductCartCardListProps {
   item: CartItem;
@@ -23,21 +15,39 @@ interface ProductCartCardListProps {
 const ProductCartCardList = ({ item }: ProductCartCardListProps) => {
   const dispatch = useDispatch();
 
+  // Get image URL with proper fallback
+  const getImageUrl = (): string => {
+    if (item?.product_card_image?.url) {
+      return item.product_card_image.url;
+    }
+    if (item?.image && Array.isArray(item.image) && item.image.length > 0) {
+      return item.image[0]?.url || "/fallback-image.png";
+    }
+    if (item?.imageUrl) {
+      return item.imageUrl;
+    }
+    return "/fallback-image.png";
+  };
+
   const handleIncrement = () => {
-    // dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
+    if (item.quantity >= 100000) {
+      toast.warning("Maximum quantity reached");
+      return;
+    }
+    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = () => {
     if (item?.quantity > 1) {
-      // dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+      dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
     } else {
       // Remove item if quantity would be 0
-      // dispatch(removeFromCart(item.id));
+      dispatch(removeFromCart(item.id));
     }
   };
 
   const handleRemove = () => {
-    // dispatch(removeFromCart(item.id));
+    dispatch(removeFromCart(item.id));
   };
 
   const itemTotal = (item?.price * item?.quantity).toFixed(2);
@@ -47,11 +57,7 @@ const ProductCartCardList = ({ item }: ProductCartCardListProps) => {
       {/* Product Image */}
       <div className="relative w-20 h-20 flex-shrink-0">
         <Image
-          src={
-            item?.product_card_image?.url ||
-            item?.image[0]?.url ||
-            "/fallback-image.png"
-          }
+          src={getImageUrl()}
           fill
           alt={item?.name}
           className="rounded-md object-cover"
@@ -64,10 +70,10 @@ const ProductCartCardList = ({ item }: ProductCartCardListProps) => {
           {item?.name.slice(0, 30) || "Product Name"}
         </h3>
         <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
-          {item?.subtitle.slice(0, 30) || "Product variant"}
+          {item?.subtitle ? item.subtitle.slice(0, 30) : "Product variant"}
         </p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-          ${item?.price.toFixed(2)} each
+          ${item?.price ? item.price.toFixed(2) : "0.00"}
         </p>
       </div>
 
@@ -84,7 +90,7 @@ const ProductCartCardList = ({ item }: ProductCartCardListProps) => {
 
         <div className="h-8 rounded-sm flex items-center gap-2 dark:bg-gray-900">
           <span className="w-20 text-center  font-medium overflow-hidden">
-            11 {item?.quantity}
+            {item?.quantity}
           </span>
         </div>
         <Button

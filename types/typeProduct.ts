@@ -61,3 +61,17 @@ export interface ProductCategory {
   publishedAt: string;
   products: Product[];
 }
+
+export interface CartItem {
+  id: number | string;
+  name: string;
+  subtitle?: string;
+  price: number;
+  quantity: number;
+  quantityPrice?: number;
+  slug?: string;
+  product_card_image?: { url: string };
+  image?: { url: string }[];
+  imageUrl?: string;
+  subtotal?: number;
+}

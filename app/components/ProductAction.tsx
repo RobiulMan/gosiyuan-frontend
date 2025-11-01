@@ -8,7 +8,7 @@ import { addToCart } from "@/store/cartSlice";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { showAddToCartToast } from "./toast/ShowAddToCartToast";
-
+import WishlistButton from "./WishlistButton";
 interface ProductActionsProps {
   product: any; // Replace with your Product type
 }
@@ -40,7 +40,7 @@ export default function ProductActions({ product }: ProductActionsProps) {
 
   const handleBuyNow = () => {
     dispatch(addToCart({ ...product, quantity }) as any);
-    router.push("/checkout"); // or your cart page
+    router.push("/cart");
   };
 
   return (
@@ -49,12 +49,8 @@ export default function ProductActions({ product }: ProductActionsProps) {
         <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-4">
           ${product.price} USD
         </p>
-        <Button
-          size="icon"
-          className="rounded-full bg-gray-700 text-white hover:bg-gray-900 cursor-pointer"
-        >
-          <Heart className="h-5 w-5" />
-        </Button>
+
+        <WishlistButton product={product} />
       </div>
 
       <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
@@ -64,11 +60,11 @@ export default function ProductActions({ product }: ProductActionsProps) {
         {product.subtitle}
       </p>
 
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <div className="text-center md:text-left mt-8">
           <QuantityButton quantity={quantity} setQuantity={setQuantity} />
         </div>
-        <div className="pt-4 w-full text-center md:text-left mt-8">
+        <div className="pt-4 w-full text-center md:text-left mx-2 mt-8">
           <Button
             onClick={handleAddToCart}
             disabled={isAddingToCart}
