@@ -19,6 +19,7 @@ import Link from "next/link";
 import FloatingThemeToggle from "./buttons/FloatingThemeToggleButton";
 import { useSelector } from "react-redux";
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "next/navigation";
 
 const categoiresMenu = [
   {
@@ -64,11 +65,16 @@ const categoiresMenu = [
 ];
 
 const Navbar = () => {
+  const router = useRouter();
   const { cartItems } = useSelector((state: any) => state.cart);
   const totalItems = cartItems.reduce(
     (acc: number, item: any) => acc + item.quantity,
     0,
   );
+
+  const handleSearchClick = () => {
+    router.push("/search");
+  };
   return (
     <nav className=" w-full  bg-green-200 dark:bg-gray-800 sticky py-6  px-4 z-50 ">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between ">
@@ -128,7 +134,10 @@ const Navbar = () => {
           </Link>
 
           <div className="">
-            <Button className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
+            <Button
+              onClick={handleSearchClick}
+              className=" bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent "
+            >
               <Search size={20} />
             </Button>
           </div>
@@ -169,7 +178,10 @@ const Navbar = () => {
           <div className="flex items-center justify-center space-x-2">
             {/* Search Button */}
             <div>
-              <Button className="   bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent ">
+              <Button
+                onClick={handleSearchClick}
+                className="   bg-transparent  dark:bg-transparent dark:text-white  cursor-pointer text-gray-900 hover:text-gray-500 hover:bg-transparent "
+              >
                 <Search size={20} />
               </Button>
             </div>

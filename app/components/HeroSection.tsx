@@ -12,7 +12,7 @@ import earphoneandspeakerDark from "@/public/menu-icons/Earphones and Speaker1.p
 import carphoneholderDark from "@/public/menu-icons/car phone holder 1.png";
 import auxcableDark from "@/public/menu-icons/AUX Cable1.png";
 import multifunctionalDark from "@/public/menu-icons/phone Multi Functional  1.png";
-import screenprotector from "@/public/menu-icons/phone-screen-protector.png"
+import screenprotector from "@/public/menu-icons/phone-screen-protector.png";
 import darkitem from "@/public/heroimages/dark-item.png";
 import { CategoryItem } from "@/types/types";
 
@@ -71,7 +71,7 @@ const categories: CategoryItem[] = [
     icon: auxcableDark,
     name: " Aux Cable",
     href: "/categories/aux-cable",
-  },  
+  },
   {
     id: "temperedglass",
     icon: screenprotector,
@@ -79,12 +79,6 @@ const categories: CategoryItem[] = [
     href: "/categories/tempered-glass",
   },
 ];
-
-
-
-
-
-
 
 export default function HeroSection() {
   return (
@@ -105,8 +99,8 @@ export default function HeroSection() {
                 className="  bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 dark:bg-emerald-700 dark:hover:bg-green-800"
                 asChild
               >
-                <Link href="/contact" className="uppercase">
-                  Contact with us for first order..
+                <Link href="/products" className="uppercase">
+                  Exprore Products
                 </Link>
               </Button>
             </div>

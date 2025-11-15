@@ -11,7 +11,7 @@ import { Product } from "@/types/typeProduct";
 
 export async function generateStaticParams() {
   // Fetch categories instead of products
-  const {data} = await fetchDataFromStrapi(
+  const { data } = await fetchDataFromStrapi(
     "/api/categories?fields[0]=slug",
     undefined,
     false,
@@ -28,21 +28,20 @@ export default async function SingleCategory({
 }) {
   const { slug } = await params;
 
-  const  categoriesDatat = await fetchCategories(undefined, slug)
+  const categoriesDatat = await fetchCategories(undefined, slug);
 
-
-  // Handle no products case
-  if (!categoriesDatat || categoriesDatat.length === 0) {
+  // Check if the category itself exists
+  if (!categoriesDatat) {
     notFound();
   }
-
-
 
   const breadcrumbsText = slug
     .split("-")
     .map((word: any) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
+  // Check if the category has products
+  const hasProducts = categoriesDatat.length > 0;
 
   return (
     <>
@@ -61,14 +60,20 @@ export default async function SingleCategory({
         <h2 className=" mt-20 mb-20 text-center text-3xl font-bold text-gray-800 dark:text-gray-100">
           {breadcrumbsText}
         </h2>
-        <div className="container  flex justify-center space-x-5 mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  items-center">   
-            {/* data has to be rendred */}
-            {categoriesDatat.map((product: any) => (
-              <ProductCard product={product as Product} key={product.id} />
-            ))}
-            {/* Example of a single product card */}
-          </div>
+        <div className="container flex justify-center space-x-5 mx-auto">
+          {hasProducts ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 items-center">
+              {categoriesDatat.map((product: any) => (
+                <ProductCard product={product as Product} key={product.id} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-600 dark:text-gray-400">
+                No products listed yet
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <FooterSection />
