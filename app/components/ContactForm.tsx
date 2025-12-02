@@ -12,7 +12,6 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
 export default function ContactForm() {
-  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -130,11 +129,12 @@ export default function ContactForm() {
                     <h3 className="font-medium mb-1 dark:text-gray-900">
                       Call us
                     </h3>
+
                     <Link
-                      href="tel:+8615360539718"
+                      href="tel:+8615607358657"
                       className="text-gray-600 hover:underline"
                     >
-                      +86 15360 539-718
+                      +86 15607 358-657
                     </Link>
                   </div>
                 </div>

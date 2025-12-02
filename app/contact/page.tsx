@@ -14,34 +14,35 @@ export default function Contact() {
         data={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "inLanguage": "en-US",
-          "isPartOf": {
+          inLanguage: "en-US",
+          isPartOf: {
             "@type": "WebSite",
-            "name": "gosiyuan Wholesale Trading Supplies.",
-            "url": "https://gosiyuan.com"
+            name: "gosiyuan Wholesale Trading Supplies.",
+            url: "https://gosiyuan.com",
           },
-          "about": {
+          about: {
             "@type": "Organization",
-            "name": "gosiyuan Wholesale Trading Supplies.",
-            "url": "https://gosiyuan.com",
-            "logo": "https://gosiyuan.com/logo.png",
-            "description": 
-            "gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
+            name: "gosiyuan Wholesale Trading Supplies.",
+            url: "https://gosiyuan.com",
+            logo: "https://gosiyuan.com/logo.png",
+            description:
+              "gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.",
           },
-          "mainEntity": {
+          mainEntity: {
             "@type": "ContactPoint",
-            "telephone": "+86 15360 539-718",
-            "email": "contact@gosiyuan.com",
-            "contactType": "customer service",
-            "areaServed": ["US", "CA", "UK", "Europe"],
-            "availableLanguage": ["English"]
+            telephone: "+86 15607 358-657",
+            email: "contact@gosiyuan.com",
+            contactType: "customer service",
+            areaServed: ["US", "CA", "UK", "Europe"],
+            availableLanguage: ["English"],
           },
-          "address": {
+          address: {
             "@type": "PostalAddress",
-            "streetAddress": "4C-12, 4C-13, Jia Nian Business Center, Building 204, Huaqiang North Shangbu Industrial District",
-            "addressLocality": "Futian District",
-            "addressRegion": "Shenzhen",
-            "addressCountry": "China"
+            streetAddress:
+              "4C-12, 4C-13, Jia Nian Business Center, Building 204, Huaqiang North Shangbu Industrial District",
+            addressLocality: "Futian District",
+            addressRegion: "Shenzhen",
+            addressCountry: "China",
           },
         }}
       />

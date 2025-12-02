@@ -25,7 +25,10 @@ const FooterSection = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 uppercase">Gosiyuan</h3>
             <p className="mb-4 text-muted-foreground">
-              Gosiyuan Wholesale Trading Supplies . is a leading provider of mobile and electronic accessories products to wholesalers and retailers in the US, CA, UK and Europe.            </p>
+              Gosiyuan Wholesale Trading Supplies . is a leading provider of
+              mobile and electronic accessories products to wholesalers and
+              retailers in the US, CA, UK and Europe.{" "}
+            </p>
             <div className="flex space-x-4 mt-4">
               <Link
                 href="#"
@@ -106,17 +109,16 @@ const FooterSection = () => {
               <li className="flex items-center">
                 <MapPin className="mr-2 h-20 w-20 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  4C-12,4C-13,Jia Nian Business Center, Building 204,Huaqiang North Shangbu Industrial District,
-                  Futian District, Shenzhen. China.
+                  4C-12,4C-13,Jia Nian Business Center, Building 204,Huaqiang
+                  North Shangbu Industrial District, Futian District, Shenzhen.
+                  China.
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  <Link
-                    href="tel:+8615360539718"
-                  >
-                    +86 15360 539-718
+                  <Link href="tel:+8615607358657" className="text-blue-300">
+                    +86 15607 358-657
                   </Link>
                 </span>
               </li>
@@ -124,8 +126,9 @@ const FooterSection = () => {
                 <Mail className="mr-2 h-5 w-5 text-muted-foreground" />
                 <span className="text-muted-foreground">
                   <Link
-                    href="mailto:support@gosiyuan.com">
-
+                    href="mailto:support@gosiyuan.com"
+                    className="text-blue-300"
+                  >
                     support@gosiyuan.com
                   </Link>
                 </span>
@@ -149,10 +152,7 @@ const FooterSection = () => {
         <Separator className="my-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center text-muted-foreground text-sm">
-          <p>
-            © {currentYear} {" "}
-            gosiyuan. All rights reserved.
-          </p>
+          <p>© {currentYear} gosiyuan. All rights reserved.</p>
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6">
               <li>
