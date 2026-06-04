@@ -151,7 +151,7 @@ export default function ContactForm() {
                     </h3>
                     <Link
                       className="text-gray-600 hover:underline"
- href="mailto:support@gosiyuan.com"                    >
+ href="mailto:hameemaamanah@gmail.com"                    >
                     
                
                     hameemaamanah@gmail.com
