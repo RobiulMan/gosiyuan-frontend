@@ -25,5 +25,3 @@ jobs:
           -e NEXT_PUBLIC_STRAPI_API_URL=$NEXT_PUBLIC_STRAPI_API_URL \
           -e NEXT_PUBLIC_STRAPI_API_TOKEN=$NEXT_PUBLIC_STRAPI_API_TOKEN \
           robiul692/gosiyuan-frontend:latest
-      - name: Reload Nginx
-        run: sudo systemctl reload nginx
