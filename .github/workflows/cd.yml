@@ -1,25 +1,19 @@
 name: CD Pipeline
-
 on:
   workflow_run:
     workflows: ["CI Pipeline"]
     types:
       - completed
-
 jobs:
   build:
     runs-on: self-hosted
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Pull Docker image
         run: docker pull robiul692/gosiyuan-frontend:latest
-
       - name: Stop and remove old container
         run: docker rm -f gosiyuan-frontend || true
-
       - name: Run Docker container
         env:
           NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
@@ -31,3 +25,5 @@ jobs:
           -e NEXT_PUBLIC_STRAPI_API_URL=$NEXT_PUBLIC_STRAPI_API_URL \
           -e NEXT_PUBLIC_STRAPI_API_TOKEN=$NEXT_PUBLIC_STRAPI_API_TOKEN \
           robiul692/gosiyuan-frontend:latest
+      - name: Reload Nginx
+        run: sudo systemctl reload nginx
