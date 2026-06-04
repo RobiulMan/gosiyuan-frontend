@@ -109,16 +109,16 @@ const FooterSection = () => {
               <li className="flex items-center">
                 <MapPin className="mr-2 h-20 w-20 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  4C-12,4C-13,Jia Nian Business Center, Building 204,Huaqiang
-                  North Shangbu Industrial District, Futian District, Shenzhen.
-                  China.
+                  HAMEEM AMMANAH LLC
+10859 44TH AVE # 1FL
+CORONA NY 11368-2524
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  <Link href="tel:+8615607358657" className="text-blue-300">
-                    +86 15607 358-657
+                  <Link href="tel:+19292310766" className="text-blue-300">
+                    +1 929-231-0766
                   </Link>
                 </span>
               </li>
@@ -129,7 +129,7 @@ const FooterSection = () => {
                     href="mailto:support@gosiyuan.com"
                     className="text-blue-300"
                   >
-                    support@gosiyuan.com
+                    hameemaamanah@gmail.com
                   </Link>
                 </span>
               </li>

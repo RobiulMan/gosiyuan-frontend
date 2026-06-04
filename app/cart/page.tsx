@@ -4,9 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/cartSlice";
 import { makePaymentRequest } from "@/lib/api";
-// import { createLogger } from "@/lib/services/LoggerService";
-// import type { LoggerService } from "@/lib/services/LoggerService";
-//
 import FooterSection from "@/app/components/FooterSection";
 import Navbar from "@/app/components/Navbar";
 import HeadLabel from "../components/HeadLebel";

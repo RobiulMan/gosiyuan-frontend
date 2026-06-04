@@ -127,11 +127,35 @@ export default function InvoicePage() {
 
     setPdfLoading(true);
     try {
-      // Import required libraries
-      const jsPDF = (await import("jspdf")).jsPDF;
-      const html2canvas = (await import("html2canvas")).default;
+      // Dynamic import with fallback
+      let jsPDF;
+      let html2canvas;
+
+      try {
+        const jsPDFModule = await import("jspdf");
+        jsPDF = jsPDFModule.jsPDF;
+      } catch (err) {
+        console.error("jsPDF import failed:", err);
+        throw new Error("PDF library failed to load. Please try again.");
+      }
+
+      try {
+        const html2canvasModule = await import("html2canvas");
+        html2canvas = html2canvasModule.default;
+      } catch (err) {
+        console.error("html2canvas import failed:", err);
+        throw new Error("Canvas library failed to load. Please try again.");
+      }
 
       const element = contentRef.current;
+
+      // Hide elements that shouldn't be in PDF
+      const buttonContainer = element
+        .closest(".max-w-3xl")
+        ?.querySelector(".flex.justify-between.items-center") as HTMLElement;
+      if (buttonContainer) {
+        buttonContainer.style.display = "none";
+      }
 
       // Create canvas from HTML element
       const canvas = await html2canvas(element, {
@@ -140,9 +164,15 @@ export default function InvoicePage() {
         allowTaint: true,
         backgroundColor: "#ffffff",
         logging: false,
+        windowWidth: 900,
       });
 
-      const imgData = canvas.toDataURL("image/jpeg", 0.98);
+      // Restore button visibility
+      if (buttonContainer) {
+        buttonContainer.style.display = "";
+      }
+
+      const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
@@ -151,26 +181,32 @@ export default function InvoicePage() {
 
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth - 20;
+      const imgWidth = pageWidth - 20; // 10mm margins
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       let heightLeft = imgHeight;
       let position = 10;
 
-      pdf.addImage(imgData, "JPEG", 10, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      // Add first image
+      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight - 20; // account for margins
 
+      // Add additional pages if needed
       while (heightLeft > 0) {
         position = heightLeft - imgHeight;
         pdf.addPage();
-        pdf.addImage(imgData, "JPEG", 10, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight - 20;
       }
 
       pdf.save(`invoice-${order.orderId}.pdf`);
     } catch (err) {
       console.error("PDF generation error:", err);
-      alert("Error generating PDF. Please try again.");
+      alert(
+        err instanceof Error
+          ? `Error: ${err.message}`
+          : "Error generating PDF. Please try again.",
+      );
     } finally {
       setPdfLoading(false);
     }
@@ -365,9 +401,9 @@ export default function InvoicePage() {
                           <img src="${item.image}" alt="${item.name}" />
                         </td>
                         <td>${item.name}</td>
-                        <td class="text-right">৳${item.price}</td>
+                        <td class="text-right">$${item.price}</td>
                         <td class="text-right">${item.quantity}</td>
-                        <td class="text-right" style="font-weight: 600;">৳${item.price * item.quantity}</td>
+                        <td class="text-right" style="font-weight: 600;">$${item.price * item.quantity}</td>
                       </tr>
                     `,
                       )
@@ -380,19 +416,19 @@ export default function InvoicePage() {
                 <div class="summary-box">
                   <div class="summary-row">
                     <span>Subtotal:</span>
-                    <span>৳${order.subtotal}</span>
+                    <span>$${order.subtotal}</span>
                   </div>
                   <div class="summary-row">
                     <span>Tax:</span>
-                    <span>৳${order.tax}</span>
+                    <span>$${order.tax}</span>
                   </div>
                   <div class="summary-row">
                     <span>Shipping:</span>
-                    <span>৳${order.shippingCost}</span>
+                    <span>$${order.shippingCost}</span>
                   </div>
                   <div class="summary-total">
                     <span>Total:</span>
-                    <span>৳${order.total}</span>
+                    <span>$${order.total}</span>
                   </div>
                 </div>
               </div>
@@ -549,14 +585,17 @@ export default function InvoicePage() {
                           src={item.image}
                           alt={item.name}
                           className="h-10 w-10 object-cover rounded"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src =
+                              "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect fill='%23e5e7eb' width='40' height='40'/%3E%3C/svg%3E";
+                          }}
                         />
                       </td>
                       <td className="py-3">{item.name.slice(0, 20)}...</td>
                       <td className="text-right">${item.price}</td>
                       <td className="text-right">{item.quantity}</td>
                       <td className="text-right font-semibold">
-                        ${""}
-                        {item.price * item.quantity}
+                        ${item.price * item.quantity}
                       </td>
                     </tr>
                   ))}
@@ -579,7 +618,7 @@ export default function InvoicePage() {
                   <span>Shipping:</span>
                   <span>${order.shippingCost}</span>
                 </div>
-                <div className="flex justify-between py-3 border-t-1 border-gray-300 text-lg dark:text-gray-300 font-bold text-gray-900">
+                <div className="flex justify-between py-3 border-t border-gray-300 text-lg dark:text-gray-300 font-bold text-gray-900">
                   <span>Total:</span>
                   <span>${order.total}</span>
                 </div>
