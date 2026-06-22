@@ -83,8 +83,8 @@ const TermsConditionsContent = () => (
       <div className="grid md:grid-cols-3 gap-4 mb-4">
         <div className="flex items-center justify-center md:justify-start">
           <span className="mr-2 text-gray-700 dark:text-gray-300">📞</span>
-          <a href="tel:+8615360539718" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-            +86 15360 539-718
+          <a href="tel:+8615607358657" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+            +86 15607 358-657
           </a>
         </div>
         <div className="flex items-center justify-center md:justify-start">

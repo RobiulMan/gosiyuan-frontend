@@ -115,8 +115,8 @@ const FooterSection = () => {
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  <Link href="tel:+8615360539718" className="text-blue-300">
-                    +86 15360 539-718
+                  <Link href="tel:+8615607358657" className="text-blue-300">
+                    +86 15607 358-657
                   </Link>
                 </span>
               </li>

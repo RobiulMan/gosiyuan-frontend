@@ -30,7 +30,7 @@ const PrivacyPolicyContent = () => (
           <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
             <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Call us</h3>
             <p className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-              <a href="tel:+8615360539718">+86 15360 539-718</a>
+              <a href="tel:+8615607358657">+86 15607 358-657</a>
             </p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
