@@ -30,7 +30,7 @@ export default function Contact() {
           },
           mainEntity: {
             "@type": "ContactPoint",
-            telephone: "+86 15607 358-657",
+            telephone: "+86 15360 539-718",
             email: "contact@gosiyuan.com",
             contactType: "customer service",
             areaServed: ["US", "CA", "UK", "Europe"],

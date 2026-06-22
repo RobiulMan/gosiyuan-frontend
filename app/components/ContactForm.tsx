@@ -130,10 +130,12 @@ export default function ContactForm() {
                       Call us
                     </h3>
 
-                    <Link href="tel:+19292310766"                       className="text-gray-600 hover:underline"
->
-                    +1 929-231-0766
-                  </Link>
+                    <Link
+                      href="tel:+8615360539718"
+                      className="text-gray-600 hover:underline"
+                    >
+                      +86 15360 539-718
+                    </Link>
                   </div>
                 </div>
               </CardContent>
@@ -151,10 +153,9 @@ export default function ContactForm() {
                     </h3>
                     <Link
                       className="text-gray-600 hover:underline"
- href="mailto:hameemaamanah@gmail.com"                    >
-                    
-               
-                    hameemaamanah@gmail.com
+                      href="mailto:support@gosiyuan.com"
+                    >
+                      support@gosiyuan.com
                     </Link>
                   </div>
                 </div>
@@ -170,19 +171,17 @@ export default function ContactForm() {
                   </div>
                   <div className="flex-1">
                     <h3 className="font-medium mb-1 dark:text-gray-800">
-                       Our office
+                      Our office
                     </h3>
                     <address className="not-italic text-gray-600">
                       <Link
-                        href="https://www.google.com/maps/place/10859+44th+Ave+%231FL,+Corona,+NY+11368/@40.745567,-73.856819,17z/data=!3m1!4b1!4m5!3m4!1s0x89c259af2e9a7d9:0x8c8e5f6b8c8e5f6b!8m2!3d40.745567!4d-73.8546303"
-
+                        href="https://www.google.com/maps/place/4C-12,+4C-13,+Jia+Nian+Business+Center,+Building+204,+Huaqiang+North+Shangbu+Industrial+District,+Futian+District,+Shenzhen,+China/@22.5525,114.0575,17z/data=!3m1!4b1!4m6!3m5!1s0x3403f7e8c9e2f8d7:0x8a2b8c8c8c8c8c8c!8m2!3d22.5525!4d114.0575!16s%2Fg%2F11b6y6y6y6"
                         target="_blank"
                         className="hover:underline"
                       >
-                        HAMEEM AMMANAH LLC
-10859 44TH AVE # 1FL
-CORONA NY 11368-2524
-
+                        4C-12, 4C-13, Jia Nian Business Center, Building 204,
+                        Huaqiang North Shangbu Industrial District, Futian
+                        District, Shenzhen, China.
                       </Link>
                     </address>
                   </div>
